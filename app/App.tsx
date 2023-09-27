@@ -6,13 +6,12 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
-  Text,
+  // StyleSheet,
+  // Text,
   useColorScheme,
   View,
 } from 'react-native';
@@ -25,62 +24,46 @@ import {
   // ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {Login} from './components/login.component';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+// import {ApiProvider, Reporter} from './libs/hooks/src';
+import {ApiProvider} from './libs/hooks/src';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {FeatureProvider} from './context/feature/featureContext';
+import initSkolplattformen, {
+  features as featuresSkolPlattformen,
+} from './libs/api-skolplattformen/lib';
+import CookieManager from '@react-native-cookies/cookies';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  const platform = {
+    id: 'stockholm-skolplattformen',
+    displayName: 'Stockholms stad (Skolplattformen)',
+    api: initSkolplattformen(fetch as any, CookieManager),
+    features: featuresSkolPlattformen,
+  };
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Login">
-            <Login />
-          </Section>
-          {/* <Section title="Step One">
+    <FeatureProvider features={platform.features}>
+      <ApiProvider api={platform.api} storage={AsyncStorage}>
+        <SafeAreaView style={backgroundStyle}>
+          <StatusBar
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            backgroundColor={backgroundStyle.backgroundColor}
+          />
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={backgroundStyle}>
+            {/* <Header /> */}
+            <View
+              style={{
+                backgroundColor: isDarkMode ? Colors.black : Colors.white,
+              }}>
+              <Login />
+              {/* <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>
@@ -94,29 +77,12 @@ function App(): JSX.Element {
             Read the docs to discover what to do next:
           </Section>
           <LearnMoreLinks /> */}
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </ApiProvider>
+    </FeatureProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;

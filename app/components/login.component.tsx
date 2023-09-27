@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// import { useApi } from '@skolplattformen/hooks'
+import {useApi} from '../libs/hooks/src';
 // import {
 //   Button,
 //   ButtonGroup,
@@ -13,7 +13,7 @@
 //   Text,
 //   useStyleSheet,
 // } from '@ui-kitten/components';
-// import Personnummer from 'personnummer';
+import Personnummer from 'personnummer';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, {useContext, useEffect, useState} from 'react';
 import {
@@ -28,8 +28,8 @@ import {
 // import {schema} from '../app.json';
 // import {SchoolPlatformContext} from '../context/schoolPlatform/schoolPlatformContext';
 // import {schoolPlatforms} from '../data/schoolPlatforms';
-// import {useFeature} from '../hooks/useFeature';
-// import useSettingsStorage from '../hooks/useSettingsStorage';
+import {useFeature} from '../hooks/useFeature';
+import useSettingsStorage from '../hooks/useSettingsStorage';
 // import {useTranslation} from '../hooks/useTranslation';
 // import {Layout} from '../styles';
 // import {
@@ -38,7 +38,7 @@ import {
 //   PersonIcon,
 //   SelectIcon,
 // } from './icon.component';
-// import AppStorage from '../services/appStorage';
+import AppStorage from '../services/appStorage';
 
 // const BankId = () => (
 //   <Image
@@ -56,25 +56,25 @@ import {
 // );
 
 export const Login = () => {
-  // const {api} = useApi();
-  // const [cancelLoginRequest, setCancelLoginRequest] = useState<
-  //   (() => Promise<void>) | (() => null)
-  // >(() => () => null);
-  // const [visible, showModal] = useState(false);
+  const {api} = useApi();
+  const [cancelLoginRequest, setCancelLoginRequest] = useState<
+    (() => Promise<void>) | (() => null)
+  >(() => () => null);
+  const [visible, showModal] = useState(false);
   // const [showLoginMethod, setShowLoginMethod] = useState(false);
   // const [showSchoolPlatformPicker, setShowSchoolPlatformPicker] =
   //   useState(false);
-  // const [error, setError] = useState<string | null>(null);
-  // const [loginStatusText, setLoginStatusText] = useState('');
-  // const [personalIdNumber, setPersonalIdNumber] = useSettingsStorage(
-  //   'cachedPersonalIdentityNumber',
-  // );
-  // const [loginMethodId, setLoginMethodId] = useSettingsStorage('loginMethodId');
+  const [error, setError] = useState<string | null>(null);
+  const [loginStatusText, setLoginStatusText] = useState('');
+  const [personalIdNumber, setPersonalIdNumber] = useSettingsStorage(
+    'cachedPersonalIdentityNumber',
+  );
+  const [loginMethodId, setLoginMethodId] = useSettingsStorage('loginMethodId');
 
-  // const loginBankIdSameDeviceWithoutId = useFeature(
-  //   'LOGIN_BANK_ID_SAME_DEVICE_WITHOUT_ID',
-  // );
-  // const loginWithFrejaEnabled = useFeature('LOGIN_FREJA_EID');
+  const loginBankIdSameDeviceWithoutId = useFeature(
+    'LOGIN_BANK_ID_SAME_DEVICE_WITHOUT_ID',
+  );
+  const loginWithFrejaEnabled = useFeature('LOGIN_FREJA_EID');
   // const {currentSchoolPlatform, changeSchoolPlatform} = useContext(
   //   SchoolPlatformContext,
   // );
@@ -90,23 +90,23 @@ export const Login = () => {
   //   {id: 'testuser', title: t('auth.loginAsTestUser')},
   // ] as const;
 
-  // if (loginMethodId === 'freja' && !loginWithFrejaEnabled) {
-  //   setLoginMethodId('thisdevice');
-  // }
+  if (loginMethodId === 'freja' && !loginWithFrejaEnabled) {
+    setLoginMethodId('thisdevice');
+  }
 
-  // useEffect(() => {
-  //   const loginHandler = async () => {
-  //     console.debug('Runnning loginHandler');
-  //     const user = await api.getUser();
-  //     await AppStorage.clearPersonalData(user);
-  //     showModal(false);
-  //   };
+  useEffect(() => {
+    const loginHandler = async () => {
+      console.debug('Runnning loginHandler');
+      const user = await api.getUser();
+      await AppStorage.clearPersonalData(user);
+      showModal(false);
+    };
 
-  //   api.on('login', loginHandler);
-  //   return () => {
-  //     api.off('login', loginHandler);
-  //   };
-  // }, [api]);
+    api.on('login', loginHandler);
+    return () => {
+      api.off('login', loginHandler);
+    };
+  }, [api]);
 
   // const LoginProviderImage = () => {
   //   //if(loginMethodId == 'testuser') return undefined
@@ -146,66 +146,69 @@ export const Login = () => {
   //   }
   // };
 
-  // const isUsingPersonalIdNumber =
-  //   loginMethodId === 'otherdevice' ||
-  //   (loginMethodId === 'thisdevice' && !loginBankIdSameDeviceWithoutId);
+  const isUsingPersonalIdNumber =
+    loginMethodId === 'otherdevice' ||
+    (loginMethodId === 'thisdevice' && !loginBankIdSameDeviceWithoutId);
 
-  // const startLogin = async (text: string) => {
-  //   if (loginMethodId === 'freja') {
-  //     setLoginStatusText(t('auth.freja.Waiting'));
-  //     showModal(true);
-  //     const status = await api.loginFreja();
-  //     setCancelLoginRequest(() => () => status.cancel());
-  //     openFreja(status.token);
-  //     status.on('STARTED', () => console.log('Freja eID app not yet opened'));
-  //     status.on('DELIVERED_TO_MOBILE', () =>
-  //       console.log('Freja eID app is open'),
-  //     );
-  //     status.on('CANCELLED', () => {
-  //       console.log('User pressed cancel in Freja eID');
-  //       showModal(false);
-  //     });
-  //     status.on('APPROVED', () => {
-  //       console.log('Freja eID ok');
-  //       setLoginStatusText(t('auth.loginSuccessful'));
-  //     });
-  //   } else if (
-  //     loginMethodId === 'thisdevice' ||
-  //     loginMethodId === 'otherdevice'
-  //   ) {
-  //     setLoginStatusText(t('auth.bankid.Waiting'));
-  //     showModal(true);
+  const startLogin = async (text: string) => {
+    if (loginMethodId === 'freja') {
+      // setLoginStatusText(t('auth.freja.Waiting'));
+      // showModal(true);
+      // const status = await api.loginFreja();
+      // setCancelLoginRequest(() => () => status.cancel());
+      // openFreja(status.token);
+      // status.on('STARTED', () => console.log('Freja eID app not yet opened'));
+      // status.on('DELIVERED_TO_MOBILE', () =>
+      //   console.log('Freja eID app is open'),
+      // );
+      // status.on('CANCELLED', () => {
+      //   console.log('User pressed cancel in Freja eID');
+      //   showModal(false);
+      // });
+      // status.on('APPROVED', () => {
+      //   console.log('Freja eID ok');
+      //   setLoginStatusText(t('auth.loginSuccessful'));
+      // });
+    } else if (
+      loginMethodId === 'thisdevice' ||
+      loginMethodId === 'otherdevice'
+    ) {
+      // setLoginStatusText(t('auth.bankid.Waiting'));
+      setLoginStatusText('auth.bankid.Waiting');
+      showModal(true);
 
-  //     let ssn;
+      let ssn;
 
-  //     if (isUsingPersonalIdNumber) {
-  //       ssn = Personnummer.parse(text).format(true);
-  //       setPersonalIdNumber(ssn);
-  //     }
+      if (isUsingPersonalIdNumber) {
+        ssn = Personnummer.parse(text).format(true);
+        setPersonalIdNumber(ssn);
+      }
 
-  //     const status = await api.login(ssn);
-  //     setCancelLoginRequest(() => () => status.cancel());
-  //     if (status.token !== 'fake' && loginMethodId === 'thisdevice') {
-  //       openBankId(status.token);
-  //     }
-  //     status.on('PENDING', () => console.log('BankID app not yet opened'));
-  //     status.on('USER_SIGN', () => console.log('BankID app is open'));
-  //     status.on('CANCELLED', () => {
-  //       console.log('User pressed cancel in BankID');
-  //       showModal(false);
-  //     });
-  //     status.on('ERROR', () => {
-  //       setError(t('auth.loginFailed'));
-  //       showModal(false);
-  //     });
-  //     status.on('OK', () => {
-  //       console.log('BankID ok');
-  //       setLoginStatusText(t('auth.loginSuccessful'));
-  //     });
-  //   } else {
-  //     await api.login('201212121212');
-  //   }
-  // };
+      const status = await api.login(ssn);
+      setCancelLoginRequest(() => () => status.cancel());
+      if (status.token !== 'fake' && loginMethodId === 'thisdevice') {
+        // openBankId(status.token);
+      }
+      status.on('PENDING', () => console.log('BankID app not yet opened'));
+      status.on('USER_SIGN', () => console.log('BankID app is open'));
+      status.on('CANCELLED', () => {
+        console.log('User pressed cancel in BankID');
+        showModal(false);
+      });
+      status.on('ERROR', () => {
+        // setError(t('auth.loginFailed'));
+        setError('auth.loginFailed');
+        showModal(false);
+      });
+      status.on('OK', () => {
+        console.log('BankID ok');
+        // setLoginStatusText(t('auth.loginSuccessful'));
+        setLoginStatusText('auth.loginSuccessful');
+      });
+    } else {
+      await api.login('201212121212');
+    }
+  };
 
   // const styles = useStyleSheet(themedStyles);
 
@@ -213,7 +216,7 @@ export const Login = () => {
   //   loginMethods.find(method => method.id === loginMethodId) || loginMethods[0];
 
   return (
-    <Text>Hello there everyone!</Text>
+    <Text>Hello Marcus</Text>
     //  <>
     //   <View style={styles.loginForm}>
     //     {isUsingPersonalIdNumber && (
