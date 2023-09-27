@@ -1,18 +1,18 @@
 /* eslint-disable no-console */
 import {useApi} from '../libs/hooks/src';
-// import {
-//   Button,
-//   ButtonGroup,
-//   Card,
-//   Divider,
-//   Input,
-//   List,
-//   ListItem,
-//   Modal,
-//   StyleService,
-//   Text,
-//   useStyleSheet,
-// } from '@ui-kitten/components';
+import {
+  Button,
+  ButtonGroup,
+  Card,
+  Divider,
+  Input,
+  List,
+  ListItem,
+  Modal,
+  StyleService,
+  Text,
+  useStyleSheet,
+} from '@ui-kitten/components';
 import Personnummer from 'personnummer';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, {useContext, useEffect, useState} from 'react';
@@ -22,8 +22,7 @@ import {
   // Linking,
   // Platform,
   // TouchableWithoutFeedback,
-  // View,
-  Text,
+  View,
 } from 'react-native';
 // import {schema} from '../app.json';
 // import {SchoolPlatformContext} from '../context/schoolPlatform/schoolPlatformContext';
@@ -31,7 +30,7 @@ import {
 import {useFeature} from '../hooks/useFeature';
 import useSettingsStorage from '../hooks/useSettingsStorage';
 // import {useTranslation} from '../hooks/useTranslation';
-// import {Layout} from '../styles';
+import {Layout} from '../styles';
 // import {
 //   CheckIcon,
 //   CloseOutlineIcon,
@@ -61,9 +60,9 @@ export const Login = () => {
     (() => Promise<void>) | (() => null)
   >(() => () => null);
   const [visible, showModal] = useState(false);
-  // const [showLoginMethod, setShowLoginMethod] = useState(false);
-  // const [showSchoolPlatformPicker, setShowSchoolPlatformPicker] =
-  //   useState(false);
+  const [showLoginMethod, setShowLoginMethod] = useState(false);
+  const [showSchoolPlatformPicker, setShowSchoolPlatformPicker] =
+    useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loginStatusText, setLoginStatusText] = useState('');
   const [personalIdNumber, setPersonalIdNumber] = useSettingsStorage(
@@ -81,7 +80,7 @@ export const Login = () => {
 
   // const {t} = useTranslation();
 
-  // const valid = Personnummer.valid(personalIdNumber);
+  const valid = Personnummer.valid(personalIdNumber);
 
   // const loginMethods = [
   //   {id: 'thisdevice', title: t('auth.bankid.OpenOnThisDevice')},
@@ -89,6 +88,12 @@ export const Login = () => {
   //   {id: 'freja', title: t('auth.freja.OpenOnThisDevice')},
   //   {id: 'testuser', title: t('auth.loginAsTestUser')},
   // ] as const;
+  const loginMethods = [
+    {id: 'thisdevice', title: 'auth.bankid.OpenOnThisDevice'},
+    {id: 'otherdevice', title: 'auth.bankid.OpenOnAnotherDevice'},
+    {id: 'freja', title: 'auth.freja.OpenOnThisDevice'},
+    {id: 'testuser', title: 'auth.loginAsTestUser'},
+  ] as const;
 
   if (loginMethodId === 'freja' && !loginWithFrejaEnabled) {
     setLoginMethodId('thisdevice');
@@ -109,15 +114,19 @@ export const Login = () => {
   }, [api]);
 
   // const LoginProviderImage = () => {
-  //   //if(loginMethodId == 'testuser') return undefined
-  //   if (loginMethodId === 'freja') return FrejaEid();
-  //   return BankId();
+  //   if (loginMethodId === 'testuser') {
+  //     return null;
+  //   };
+  //! check here for errors
+  // if (loginMethodId === 'freja') return FrejaEid();
+  // return BankId();
   // };
 
-  // const getSchoolPlatformName = () => {
-  //   return schoolPlatforms.find(item => item.id === currentSchoolPlatform)
-  //     ?.displayName;
-  // };
+  const getSchoolPlatformName = () => {
+    // return schoolPlatforms.find(item => item.id === currentSchoolPlatform)
+    //   ?.displayName;
+    return 'Stockholms stad (Skolplattformen)';
+  };
 
   // const openBankId = (token: string) => {
   //   try {
@@ -210,200 +219,208 @@ export const Login = () => {
     }
   };
 
-  // const styles = useStyleSheet(themedStyles);
+  const styles = useStyleSheet(themedStyles);
 
   // const currentLoginMethod =
   //   loginMethods.find(method => method.id === loginMethodId) || loginMethods[0];
 
   return (
-    <Text>Hello Marcus</Text>
-    //  <>
-    //   <View style={styles.loginForm}>
-    //     {isUsingPersonalIdNumber && (
-    //       <Input
-    //         accessible={true}
-    //         label={t('general.socialSecurityNumber')}
-    //         autoFocus
-    //         value={personalIdNumber}
-    //         style={styles.pnrInput}
-    //         accessoryLeft={PersonIcon}
-    //         accessoryRight={props => (
-    //           <TouchableWithoutFeedback
-    //             accessible={true}
-    //             onPress={() => setPersonalIdNumber('')}
-    //             accessibilityHint={t(
-    //               'login.a11y_clear_social_security_input_field',
-    //               {defaultValue: 'Rensa fältet för personnummer'},
-    //             )}>
-    //             <CloseOutlineIcon {...props} />
-    //           </TouchableWithoutFeedback>
-    //         )}
-    //         keyboardType="numeric"
-    //         onSubmitEditing={event => startLogin(event.nativeEvent.text)}
-    //         caption={error || ''}
-    //         onChangeText={setPersonalIdNumber}
-    //         placeholder={t('auth.placeholder_SocialSecurityNumber')}
-    //       />
-    //     )}
-    //     <ButtonGroup style={styles.loginButtonGroup} status="primary">
-    //       <Button
-    //         accessible={true}
-    //         onPress={() => startLogin(personalIdNumber)}
-    //         style={styles.loginButton}
-    //         appearance="ghost"
-    //         disabled={isUsingPersonalIdNumber && !valid}
-    //         status="primary"
-    //         accessoryLeft={LoginProviderImage}
-    //         size="medium">
-    //         {currentLoginMethod.title}
-    //       </Button>
-    //       <Button
-    //         accessible={true}
-    //         onPress={() => {
-    //           setShowLoginMethod(true);
-    //         }}
-    //         style={styles.loginMethodButton}
-    //         appearance="ghost"
-    //         status="primary"
-    //         accessoryLeft={SelectIcon}
-    //         size="medium"
-    //         accessibilityHint={t('login.a11y_select_login_method', {
-    //           defaultValue: 'Välj inloggningsmetod',
-    //         })}
-    //       />
-    //     </ButtonGroup>
-    //     <View style={styles.platformPicker}>
-    //       <Button
-    //         appearance="ghost"
-    //         status="basic"
-    //         size="small"
-    //         accessoryRight={SelectIcon}
-    //         onPress={() => {
-    //           setShowSchoolPlatformPicker(true);
-    //         }}>
-    //         {getSchoolPlatformName()}
-    //       </Button>
-    //     </View>
-    //   </View>
-    //   <Modal
-    //     visible={showLoginMethod}
-    //     style={styles.modal}
-    //     onBackdropPress={() => setShowLoginMethod(false)}
-    //     backdropStyle={styles.backdrop}>
-    //     <Card>
-    //       <Text category="h5" style={styles.bankIdLoading}>
-    //         {t('auth.chooseLoginMethod')}
-    //       </Text>
-    //       <List
-    //         data={
-    //           loginWithFrejaEnabled
-    //             ? loginMethods
-    //             : loginMethods.filter(f => f.id !== 'freja')
-    //         }
-    //         ItemSeparatorComponent={Divider}
-    //         renderItem={({item, index}) => (
-    //           <ListItem
-    //             title={item.title}
-    //             accessible={true}
-    //             accessoryRight={
-    //               loginMethodId === item.id ? CheckIcon : undefined
-    //             }
-    //             onPress={() => {
-    //               setLoginMethodId(item.id);
-    //               setShowLoginMethod(false);
-    //             }}
-    //           />
-    //         )}
-    //       />
-    //       <Button
-    //         status="basic"
-    //         style={styles.cancelButtonStyle}
-    //         onPress={() => {
-    //           setShowLoginMethod(false);
-    //         }}>
-    //         {t('general.cancel')}
-    //       </Button>
-    //     </Card>
-    //   </Modal>
-    //   <Modal
-    //     visible={visible}
-    //     style={styles.modal}
-    //     onBackdropPress={() => showModal(false)}
-    //     backdropStyle={styles.backdrop}>
-    //     <Card disabled>
-    //       <Text style={styles.bankIdLoading}>{loginStatusText}</Text>
-    //       <Button
-    //         status="primary"
-    //         accessible={true}
-    //         onPress={() => {
-    //           cancelLoginRequest();
-    //           showModal(false);
-    //         }}>
-    //         {t('general.cancel')}
-    //       </Button>
-    //     </Card>
-    //   </Modal>
-    //   <Modal
-    //     visible={showSchoolPlatformPicker}
-    //     style={styles.modal}
-    //     onBackdropPress={() => setShowSchoolPlatformPicker(false)}
-    //     backdropStyle={styles.backdrop}>
-    //     <Card>
-    //       <Text category="h5" style={styles.bankIdLoading}>
-    //         {t('auth.chooseSchoolPlatform')}
-    //       </Text>
-    //       <List
-    //         data={schoolPlatforms}
-    //         ItemSeparatorComponent={Divider}
-    //         renderItem={({item}) => (
-    //           <ListItem
-    //             title={item.displayName}
-    //             accessible={true}
-    //             accessoryRight={
-    //               currentSchoolPlatform === item.id ? CheckIcon : undefined
-    //             }
-    //             onPress={() => {
-    //               changeSchoolPlatform(item.id);
-    //               setShowSchoolPlatformPicker(false);
-    //             }}
-    //           />
-    //         )}
-    //       />
-    //       <Button
-    //         status="basic"
-    //         style={styles.cancelButtonStyle}
-    //         onPress={() => setShowSchoolPlatformPicker(false)}>
-    //         {t('general.cancel')}
-    //       </Button>
-    //     </Card>
-    //   </Modal>
-    // </>
+    // <Text>Hello Marcus</Text>
+    <>
+      <View style={styles.loginForm}>
+        {isUsingPersonalIdNumber && (
+          <Input
+            accessible={true}
+            // label={t('general.socialSecurityNumber')}
+            label={'general.socialSecurityNumber'}
+            autoFocus
+            value={personalIdNumber}
+            style={styles.pnrInput}
+            // accessoryLeft={PersonIcon}
+            // accessoryRight={props => (
+            //   <TouchableWithoutFeedback
+            //     accessible={true}
+            //     onPress={() => setPersonalIdNumber('')}
+            //     accessibilityHint={t(
+            //       'login.a11y_clear_social_security_input_field',
+            //       {defaultValue: 'Rensa fältet för personnummer'},
+            //     )}>
+            //     <CloseOutlineIcon {...props} />
+            //   </TouchableWithoutFeedback>
+            // )}
+            keyboardType="numeric"
+            onSubmitEditing={event => startLogin(event.nativeEvent.text)}
+            caption={error || ''}
+            onChangeText={setPersonalIdNumber}
+            // placeholder={t('auth.placeholder_SocialSecurityNumber')}
+            placeholder={'auth.placeholder_SocialSecurityNumber'}
+          />
+        )}
+        <ButtonGroup style={styles.loginButtonGroup} status="primary">
+          <Button
+            accessible={true}
+            onPress={() => startLogin(personalIdNumber)}
+            style={styles.loginButton}
+            appearance="ghost"
+            disabled={isUsingPersonalIdNumber && !valid}
+            status="primary"
+            // accessoryLeft={LoginProviderImage}
+            size="medium">
+            'currentLoginMethod.title'
+          </Button>
+          <Button
+            accessible={true}
+            onPress={() => {
+              setShowLoginMethod(true);
+            }}
+            style={styles.loginMethodButton}
+            appearance="ghost"
+            status="primary"
+            // accessoryLeft={SelectIcon}
+            size="medium"
+            // accessibilityHint={t('login.a11y_select_login_method', {
+            //   defaultValue: 'Välj inloggningsmetod',
+            // })}
+            accessibilityHint={'login.a11y_select_login_method'}
+          />
+        </ButtonGroup>
+        <View style={styles.platformPicker}>
+          <Button
+            appearance="ghost"
+            status="basic"
+            size="small"
+            // accessoryRight={SelectIcon}
+            onPress={() => {
+              setShowSchoolPlatformPicker(true);
+            }}>
+            {getSchoolPlatformName()}
+          </Button>
+        </View>
+      </View>
+      <Modal
+        visible={showLoginMethod}
+        style={styles.modal}
+        onBackdropPress={() => setShowLoginMethod(false)}
+        backdropStyle={styles.backdrop}>
+        <Card>
+          <Text category="h5" style={styles.bankIdLoading}>
+            {/* {t('auth.chooseLoginMethod')} */}
+            {'auth.chooseLoginMethod'}
+          </Text>
+          <List
+            data={
+              loginWithFrejaEnabled
+                ? loginMethods
+                : loginMethods.filter(f => f.id !== 'freja')
+            }
+            ItemSeparatorComponent={Divider}
+            renderItem={({item}) => (
+              <ListItem
+                title={item.title}
+                accessible={true}
+                // accessoryRight={
+                //   loginMethodId === item.id ? CheckIcon : undefined
+                // }
+                onPress={() => {
+                  setLoginMethodId(item.id);
+                  setShowLoginMethod(false);
+                }}
+              />
+            )}
+          />
+          <Button
+            status="basic"
+            style={styles.cancelButtonStyle}
+            onPress={() => {
+              setShowLoginMethod(false);
+            }}>
+            {/* {t('general.cancel')} */}
+            {'general.cancel'}
+          </Button>
+        </Card>
+      </Modal>
+      <Modal
+        visible={visible}
+        style={styles.modal}
+        onBackdropPress={() => showModal(false)}
+        backdropStyle={styles.backdrop}>
+        <Card disabled>
+          <Text style={styles.bankIdLoading}>{loginStatusText}</Text>
+          <Button
+            status="primary"
+            accessible={true}
+            onPress={() => {
+              cancelLoginRequest();
+              showModal(false);
+            }}>
+            {/* {t('general.cancel')} */}
+            {'general.cancel'}
+          </Button>
+        </Card>
+      </Modal>
+      <Modal
+        visible={showSchoolPlatformPicker}
+        style={styles.modal}
+        onBackdropPress={() => setShowSchoolPlatformPicker(false)}
+        backdropStyle={styles.backdrop}>
+        <Card>
+          <Text category="h5" style={styles.bankIdLoading}>
+            {/* {t('auth.chooseSchoolPlatform')} */}
+            {'auth.chooseSchoolPlatform'}
+          </Text>
+          {/* <List
+            data={schoolPlatforms}
+            ItemSeparatorComponent={Divider}
+            renderItem={({item}) => (
+              <ListItem
+                title={item.displayName}
+                accessible={true}
+                // accessoryRight={
+                //   currentSchoolPlatform === item.id ? CheckIcon : undefined
+                // }
+                onPress={() => {
+                  changeSchoolPlatform(item.id);
+                  setShowSchoolPlatformPicker(false);
+                }}
+              />
+            )}
+          /> */}
+          <Button
+            status="basic"
+            style={styles.cancelButtonStyle}
+            onPress={() => setShowSchoolPlatformPicker(false)}>
+            {/* {t('general.cancel')} */}
+            {'general.cancel'}
+          </Button>
+        </Card>
+      </Modal>
+    </>
   );
 };
 
-// const themedStyles = StyleService.create({
-//   backdrop: {
-//     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-//   },
-//   loginForm: {
-//     ...Layout.mainAxis.flexStart,
-//   },
-//   pnrInput: { minHeight: 70 },
-//   loginButtonGroup: {
-//     minHeight: 45,
-//   },
-//   loginButton: { ...Layout.flex.full },
-//   loginMethodButton: { width: 45 },
-//   modal: {
-//     width: '90%',
-//   },
-//   bankIdLoading: { margin: 10 },
-//   cancelButtonStyle: { marginTop: 15 },
-//   icon: {
-//     width: 20,
-//     height: 20,
-//   },
-//   platformPicker: {
-//     width: '100%',
-//   },
-// })
+const themedStyles = StyleService.create({
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  loginForm: {
+    ...Layout.mainAxis.flexStart,
+  },
+  pnrInput: {minHeight: 70},
+  loginButtonGroup: {
+    minHeight: 45,
+  },
+  loginButton: {...Layout.flex.full},
+  loginMethodButton: {width: 45},
+  modal: {
+    width: '90%',
+  },
+  bankIdLoading: {margin: 10},
+  cancelButtonStyle: {marginTop: 15},
+  icon: {
+    width: 20,
+    height: 20,
+  },
+  platformPicker: {
+    width: '100%',
+  },
+});

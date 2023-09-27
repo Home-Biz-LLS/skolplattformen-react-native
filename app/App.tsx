@@ -5,6 +5,7 @@
  * @format
  */
 
+import * as eva from '@eva-design/eva';
 import React from 'react';
 import {
   SafeAreaView,
@@ -19,7 +20,7 @@ import {
 import {
   Colors,
   // DebugInstructions,
-  Header,
+  // Header,
   // LearnMoreLinks,
   // ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
@@ -28,6 +29,7 @@ import {Login} from './components/login.component';
 import {ApiProvider} from './libs/hooks/src';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FeatureProvider} from './context/feature/featureContext';
+import {ApplicationProvider} from '@ui-kitten/components';
 import initSkolplattformen, {
   features as featuresSkolPlattformen,
 } from './libs/api-skolplattformen/lib';
@@ -49,37 +51,29 @@ function App(): JSX.Element {
   return (
     <FeatureProvider features={platform.features}>
       <ApiProvider api={platform.api} storage={AsyncStorage}>
-        <SafeAreaView style={backgroundStyle}>
-          <StatusBar
-            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-            backgroundColor={backgroundStyle.backgroundColor}
-          />
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={backgroundStyle}>
-            {/* <Header /> */}
-            <View
-              style={{
-                backgroundColor: isDarkMode ? Colors.black : Colors.white,
-              }}>
-              <Login />
-              {/* <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks /> */}
-            </View>
-          </ScrollView>
-        </SafeAreaView>
+        <ApplicationProvider
+          {...eva}
+          // @ts-expect-error Unknown error
+          // customMapping={customMapping}
+          theme={eva.light}>
+          <SafeAreaView style={backgroundStyle}>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+              backgroundColor={backgroundStyle.backgroundColor}
+            />
+            <ScrollView
+              contentInsetAdjustmentBehavior="automatic"
+              style={backgroundStyle}>
+              {/* <Header /> */}
+              <View
+                style={{
+                  backgroundColor: isDarkMode ? Colors.black : Colors.white,
+                }}>
+                <Login />
+              </View>
+            </ScrollView>
+          </SafeAreaView>
+        </ApplicationProvider>
       </ApiProvider>
     </FeatureProvider>
   );
