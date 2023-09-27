@@ -1,1 +1,0 @@
-# skolplattformen-react-native
