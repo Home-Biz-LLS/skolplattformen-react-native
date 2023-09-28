@@ -25,6 +25,7 @@
     "he": "^1.2.0",
     "js-htmlencode": "^0.3.0",
     "luxon": "^3.4.3",
+    "moment": "^2.29.4",
     "node-html-parser": "^6.1.10",
     "personnummer": "^3.2.1",
     "react": "18.2.0",

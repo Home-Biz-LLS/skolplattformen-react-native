@@ -37,7 +37,7 @@ import {Layout} from '../styles';
 //   PersonIcon,
 //   SelectIcon,
 // } from './icon.component';
-import AppStorage from '../services/appStorage';
+// import AppStorage from '../services/appStorage';
 
 // const BankId = () => (
 //   <Image

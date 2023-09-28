@@ -5,7 +5,7 @@ import {useApi} from '../libs/hooks/src';
 import {useTheme} from '@ui-kitten/components';
 // import {Library} from 'libraries.json';
 import React, {useEffect} from 'react';
-import {StatusBar, useColorScheme, Text} from 'react-native';
+import {StatusBar, useColorScheme} from 'react-native';
 import {schema} from '../app.json';
 import {
   darkNavigationTheme,
@@ -19,10 +19,8 @@ import useSettingsStorage, {
 // import {isRTL} from '../services/languageService';
 // import Absence, {absenceRouteOptions} from './absence.component';
 import {Auth, authRouteOptions} from './auth.component';
-import {Test} from './test.component';
-import {IsLoggedIn} from './IsLoggedIn.component';
 // import {Child, childRouteOptions} from './child.component';
-// import {childenRouteOptions, Children} from './children.component';
+import {childenRouteOptions, Children} from './children.component';
 // import {libraryRouteOptions, LibraryScreen} from './library.component';
 // import {NewsItem, newsItemRouteOptions} from './newsItem.component';
 // import {SetLanguage, setLanguageRouteOptions} from './setLanguage.component';
@@ -41,24 +39,23 @@ import {IsLoggedIn} from './IsLoggedIn.component';
 // } from './settingsLicenses.component';
 
 export type RootStackParamList = {
-  Test: undefined;
   Login: undefined;
   IsLoggedIn: undefined;
-  // Children: undefined;
-  // Settings: {rand?: number} | undefined;
+  Children: undefined;
+  Settings: {rand?: number} | undefined;
   // SettingsAppearance: undefined;
   // SettingsAppearanceTheme: undefined;
   // SettingsLicenses: undefined;
   // // Library: {
   // //   library: Library;
   // // };
-  // Child: {
-  //   child: ChildType;
-  //   color: string;
-  //   initialRouteName?: string;
-  // };
+  Child: {
+    child: ChildType;
+    color: string;
+    initialRouteName?: string;
+  };
   // NewsItem: {newsItem: NewsItemType; child: ChildType};
-  // Absence: {child: ChildType};
+  Absence: {child: ChildType};
   // SetLanguage: undefined;
 };
 
@@ -132,13 +129,13 @@ export const AppNavigator = () => {
         })}>
         {isLoggedIn ? (
           <>
-            <Screen name="IsLoggedIn" component={IsLoggedIn} />
-            {/* <Screen
+            {/* <Screen name="IsLoggedIn" component={IsLoggedIn} /> */}
+            <Screen
               name="Children"
               component={Children}
               options={childenRouteOptions(colorScheme === 'dark')}
             />
-            <Screen
+            {/* <Screen
               name="Child"
               component={Child}
               options={childRouteOptions(colorScheme === 'dark')}
