@@ -79,39 +79,39 @@ export const Login = () => {
   // );
 
   // const {t} = useTranslation();
-
+  const t = (key: string) => key;
   const valid = Personnummer.valid(personalIdNumber);
 
-  // const loginMethods = [
-  //   {id: 'thisdevice', title: t('auth.bankid.OpenOnThisDevice')},
-  //   {id: 'otherdevice', title: t('auth.bankid.OpenOnAnotherDevice')},
-  //   {id: 'freja', title: t('auth.freja.OpenOnThisDevice')},
-  //   {id: 'testuser', title: t('auth.loginAsTestUser')},
-  // ] as const;
   const loginMethods = [
-    {id: 'thisdevice', title: 'auth.bankid.OpenOnThisDevice'},
-    {id: 'otherdevice', title: 'auth.bankid.OpenOnAnotherDevice'},
-    {id: 'freja', title: 'auth.freja.OpenOnThisDevice'},
-    {id: 'testuser', title: 'auth.loginAsTestUser'},
+    {id: 'thisdevice', title: t('auth.bankid.OpenOnThisDevice')},
+    {id: 'otherdevice', title: t('auth.bankid.OpenOnAnotherDevice')},
+    {id: 'freja', title: t('auth.freja.OpenOnThisDevice')},
+    {id: 'testuser', title: t('auth.loginAsTestUser')},
   ] as const;
+  // const loginMethods = [
+  //   {id: 'thisdevice', title: 'auth.bankid.OpenOnThisDevice'},
+  //   {id: 'otherdevice', title: 'auth.bankid.OpenOnAnotherDevice'},
+  //   {id: 'freja', title: 'auth.freja.OpenOnThisDevice'},
+  //   {id: 'testuser', title: 'auth.loginAsTestUser'},
+  // ] as const;
 
   if (loginMethodId === 'freja' && !loginWithFrejaEnabled) {
     setLoginMethodId('thisdevice');
   }
 
-  useEffect(() => {
-    const loginHandler = async () => {
-      console.debug('Runnning loginHandler');
-      const user = await api.getUser();
-      await AppStorage.clearPersonalData(user);
-      showModal(false);
-    };
+  // useEffect(() => {
+  //   const loginHandler = async () => {
+  //     console.debug('Runnning loginHandler');
+  //     const user = await api.getUser();
+  //     await AppStorage.clearPersonalData(user);
+  //     showModal(false);
+  //   };
 
-    api.on('login', loginHandler);
-    return () => {
-      api.off('login', loginHandler);
-    };
-  }, [api]);
+  //   api.on('login', loginHandler);
+  //   return () => {
+  //     api.off('login', loginHandler);
+  //   };
+  // }, [api]);
 
   // const LoginProviderImage = () => {
   //   if (loginMethodId === 'testuser') {
@@ -223,7 +223,7 @@ export const Login = () => {
 
   // const currentLoginMethod =
   //   loginMethods.find(method => method.id === loginMethodId) || loginMethods[0];
-
+  console.log('loaded login componenet');
   return (
     // <Text>Hello Marcus</Text>
     <>

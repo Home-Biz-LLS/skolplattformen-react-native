@@ -24,7 +24,7 @@ import {
   // LearnMoreLinks,
   // ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import {Login} from './components/login.component';
+import {AppNavigator} from './components/navigation.component';
 // import {ApiProvider, Reporter} from './libs/hooks/src';
 import {ApiProvider} from './libs/hooks/src';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -49,33 +49,33 @@ function App(): JSX.Element {
   };
 
   return (
-    <FeatureProvider features={platform.features}>
-      <ApiProvider api={platform.api} storage={AsyncStorage}>
-        <ApplicationProvider
-          {...eva}
-          // @ts-expect-error Unknown error
-          // customMapping={customMapping}
-          theme={eva.light}>
-          <SafeAreaView style={backgroundStyle}>
-            <StatusBar
-              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-              backgroundColor={backgroundStyle.backgroundColor}
-            />
-            <ScrollView
-              contentInsetAdjustmentBehavior="automatic"
-              style={backgroundStyle}>
-              {/* <Header /> */}
-              <View
-                style={{
-                  backgroundColor: isDarkMode ? Colors.black : Colors.white,
-                }}>
-                <Login />
-              </View>
-            </ScrollView>
-          </SafeAreaView>
-        </ApplicationProvider>
-      </ApiProvider>
-    </FeatureProvider>
+    // <FeatureProvider features={platform.features}>
+    // <ApiProvider api={platform.api} storage={AsyncStorage}>
+    <ApplicationProvider
+      {...eva}
+      // @ts-expect-error Unknown error
+      // customMapping={customMapping}
+      theme={eva.light}>
+      {/* <SafeAreaView style={backgroundStyle}> */}
+      {/* <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={backgroundStyle.backgroundColor}
+      /> */}
+      {/* <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}> */}
+      {/* <Header /> */}
+      {/* <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}> */}
+      <AppNavigator />
+      {/* </View> */}
+      {/* </ScrollView> */}
+      {/* </SafeAreaView> */}
+    </ApplicationProvider>
+    // </ApiProvider>
+    // </FeatureProvider>
   );
 }
 
