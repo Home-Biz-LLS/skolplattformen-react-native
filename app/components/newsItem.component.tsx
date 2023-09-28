@@ -17,7 +17,7 @@ import {defaultStackStyling} from '../design/navigationThemes';
 import {Layout, Sizing, Typography} from '../styles';
 import {studentName} from '../utils/peopleHelpers';
 // import {translate} from '../utils/translation';
-// import {Image} from './image.component';
+import {Image} from './image.component';
 import {Markdown} from './markdown.component';
 import {RootStackParamList} from './navigation.component';
 import {NavigationTitle} from './navigationTitle.component';
@@ -80,15 +80,15 @@ export const NewsItem = ({route}: NewsItemProps) => {
         </Text>
       )}
       <View style={styles.body}>
-        <Markdown style={stylesMarkdown}>{'data.body'}</Markdown>
-        {/* {newsItem.fullImageUrl && (
+        <Markdown style={stylesMarkdown}>{data.body}</Markdown>
+        {newsItem.fullImageUrl && (
           <Image
             accessibilityIgnoresInvertColors={false}
             src={newsItem.fullImageUrl}
             style={styles.image as ImageStyle}
             componentWidth={Dimensions.get('screen').width - Sizing.t5 * 2}
           />
-        )} */}
+        )}
       </View>
     </ScrollView>
   );

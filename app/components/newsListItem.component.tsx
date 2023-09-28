@@ -6,14 +6,14 @@ import moment from 'moment';
 import React, {ReactNode} from 'react';
 import {
   Dimensions,
-  // ImageStyle,
+  ImageStyle,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {Layout, Sizing, Typography} from '../styles';
 import {useChild} from './childContext.component';
-// import {Image} from './image.component';
+import {Image} from './image.component';
 import {RootStackParamList} from './navigation.component';
 
 interface NewsListItemProps {
@@ -41,13 +41,12 @@ export const NewsListItem = ({item, children}: NewsListItemProps) => {
       onPress={() => navigation.navigate('NewsItem', {newsItem: item, child})}>
       <View style={styles.card}>
         {width > 320 && item.fullImageUrl ? (
-          // <Image
-          //   accessibilityIgnoresInvertColors={false}
-          //   src={item.fullImageUrl}
-          //   resizeMode="cover"
-          //   style={styles.image as ImageStyle}
-          // />
-          <Text>Image goes here</Text>
+          <Image
+            accessibilityIgnoresInvertColors={false}
+            src={item.fullImageUrl}
+            resizeMode="cover"
+            style={styles.image as ImageStyle}
+          />
         ) : null}
         <View style={styles.text}>
           <View>
