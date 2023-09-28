@@ -12,7 +12,7 @@ import {
   schoolContacts,
   skola24Children,
   teachers,
-  // timetable,
+  timetable,
   user,
 } from './reducers';
 
@@ -28,7 +28,7 @@ const appReducer = combineReducers({
   schoolContacts,
   skola24Children,
   teachers,
-  // timetable,
+  timetable,
   user,
 });
 const rootReducer: typeof appReducer = (state, action) => {

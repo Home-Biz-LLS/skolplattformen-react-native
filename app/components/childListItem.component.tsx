@@ -21,7 +21,7 @@ import {studentName} from '../utils/peopleHelpers';
 import {DaySummary} from './daySummary.component';
 // import {AlertIcon, RightArrowIcon} from './icon.component';
 import {RootStackParamList} from './navigation.component';
-// import {StudentAvatar} from './studentAvatar.component';
+import {StudentAvatar} from './studentAvatar.component';
 
 interface ChildListItemProps {
   child: Child;
@@ -158,7 +158,7 @@ export const ChildListItem = ({
       <View style={styles.card}>
         <View style={styles.cardHeader}>
           <View style={styles.cardHeaderLeft}>
-            {/* <StudentAvatar name={studentName(child.name)} color={color} /> */}
+            <StudentAvatar name={studentName(child.name)} color={color} />
             <View style={styles.cardHeaderText}>
               <Text category="h6">{studentName(child.name)}</Text>
               {className ? <Text category="s1">{className}</Text> : null}

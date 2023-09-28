@@ -2,8 +2,8 @@ import {Classmate} from '../libs/api/lib';
 import {useClassmates} from '../libs/hooks/src';
 import {
   Divider,
-  Icon,
-  IconProps,
+  // Icon,
+  // IconProps,
   List,
   ListItem,
   Text,

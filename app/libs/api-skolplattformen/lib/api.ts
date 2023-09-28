@@ -19,13 +19,13 @@ import {
   Skola24Child,
   SSOSystem,
   Teacher,
-  // TimetableEntry,
+  TimetableEntry,
   SchoolContact,
   URLSearchParams,
   User,
   wrap,
 } from '../../api/lib';
-// import {Language} from '@skolplattformen/curriculum';
+import {Language} from '../../curriculum/src';
 import {EventEmitter} from 'events';
 import {decode} from 'he';
 // import {DateTime} from 'luxon';
@@ -605,54 +605,54 @@ export class ApiSkolplattformen extends EventEmitter implements Api {
     return key as string;
   }
 
-  // public async getTimetable(
-  //   child: Skola24Child,
-  //   week: number,
-  //   year: number,
-  //   lang: Language,
-  // ): Promise<TimetableEntry[]> {
-  //   if (this.isFake) return fakeResponse(fake.timetable(child));
+  public async getTimetable(
+    child: Skola24Child,
+    week: number,
+    year: number,
+    lang: Language,
+  ): Promise<TimetableEntry[]> {
+    if (this.isFake) return fakeResponse(fake.timetable(child));
 
-  //   if (!child.timetableID) {
-  //     return new Array<TimetableEntry>();
-  //   }
+    if (!child.timetableID) {
+      return new Array<TimetableEntry>();
+    }
 
-  //   const url = routes.timetable;
-  //   const renderKey = await this.getRenderKey();
-  //   const params = {
-  //     blackAndWhite: false,
-  //     customerKey: '',
-  //     endDate: null,
-  //     height: 1063,
-  //     host: 'fns.stockholm.se',
-  //     periodText: '',
-  //     privateFreeTextMode: null,
-  //     privateSelectionMode: true,
-  //     renderKey,
-  //     scheduleDay: 0,
-  //     selection: child.personGuid,
-  //     selectionType: 5,
-  //     showHeader: false,
-  //     startDate: null,
-  //     unitGuid: child.unitGuid,
-  //     week,
-  //     width: 1227,
-  //     year,
-  //   };
-  //   const session = this.getRequestInit({
-  //     ...s24Init,
-  //     method: 'POST',
-  //     body: JSON.stringify(params),
-  //   });
-  //   const response = await this.fetch(
-  //     `timetable_${child.personGuid}_${year}_${week}`,
-  //     url,
-  //     session,
-  //   );
-  //   const json = await response.json();
+    const url = routes.timetable;
+    const renderKey = await this.getRenderKey();
+    const params = {
+      blackAndWhite: false,
+      customerKey: '',
+      endDate: null,
+      height: 1063,
+      host: 'fns.stockholm.se',
+      periodText: '',
+      privateFreeTextMode: null,
+      privateSelectionMode: true,
+      renderKey,
+      scheduleDay: 0,
+      selection: child.personGuid,
+      selectionType: 5,
+      showHeader: false,
+      startDate: null,
+      unitGuid: child.unitGuid,
+      week,
+      width: 1227,
+      year,
+    };
+    const session = this.getRequestInit({
+      ...s24Init,
+      method: 'POST',
+      body: JSON.stringify(params),
+    });
+    const response = await this.fetch(
+      `timetable_${child.personGuid}_${year}_${week}`,
+      url,
+      session,
+    );
+    const json = await response.json();
 
-  //   return parse.timetable(json, year, week, lang);
-  // }
+    return parse.timetable(json, year, week, lang);
+  }
 
   public async selectChild(child: EtjanstChild): Promise<EtjanstChild> {
     const response = await this.selectChildById(child.id);

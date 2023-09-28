@@ -11,7 +11,7 @@ import {
   User,
   Skola24Child,
   EtjanstChild,
-  // TimetableEntry,
+  TimetableEntry,
   ScheduleItem,
   SchoolContact,
   Teacher,
@@ -41,17 +41,17 @@ export interface Api extends EventEmitter {
   ): Promise<ScheduleItem[]>;
   getSchoolContacts(child: EtjanstChild): Promise<SchoolContact[]>;
   getSkola24Children(): Promise<Skola24Child[]>;
-  // getTimetable(
-  //   child: Skola24Child,
-  //   week: number,
-  //   year: number,
-  //   lang: '',
-  // ): Promise<TimetableEntry[]>;
-  // getTimetable(
-  //   child: Skola24Child,
-  //   week: number,
-  //   year: number,
-  //   lang: '',
-  // ): Promise<any[]>;
+  getTimetable(
+    child: Skola24Child,
+    week: number,
+    year: number,
+    lang: '',
+  ): Promise<TimetableEntry[]>;
+  getTimetable(
+    child: Skola24Child,
+    week: number,
+    year: number,
+    lang: '',
+  ): Promise<any[]>;
   logout(): Promise<void>;
 }

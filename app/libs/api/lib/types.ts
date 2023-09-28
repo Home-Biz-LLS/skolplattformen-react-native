@@ -1,4 +1,4 @@
-// import {Subject} from '@skolplattformen/curriculum';
+import {Subject} from '../../curriculum/src';
 
 export interface Cookie {
   name: string;
@@ -20,9 +20,9 @@ export interface CookieManager {
   removeAllCookies?: () => Promise<void>;
 }
 
-// export interface Headers {
-//   get(name: string): string | null
-// }
+export interface Headers {
+  get(name: string): string | null;
+}
 
 export interface Response {
   headers: Headers;
@@ -200,17 +200,17 @@ export interface Skola24Child {
 
 export type SSOSystem = 'TimetableViewer';
 
-// export interface TimetableEntry extends Subject {
-//   id: string;
-//   teacher: string;
-//   location: string;
-//   timeStart: string;
-//   timeEnd: string;
-//   dayOfWeek: number;
-//   blockName: string;
-//   dateStart: string;
-//   dateEnd: string;
-// }
+export interface TimetableEntry extends Subject {
+  id: string;
+  teacher: string;
+  location: string;
+  timeStart: string;
+  timeEnd: string;
+  dayOfWeek: number;
+  blockName: string;
+  dateStart: string;
+  dateEnd: string;
+}
 
 export interface Teacher {
   id: number;

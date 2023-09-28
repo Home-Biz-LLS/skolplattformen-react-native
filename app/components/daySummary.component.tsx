@@ -1,5 +1,5 @@
 import {Child} from '../libs/api/lib';
-// import {useTimetable} from '../libs/hooks/src';
+import {useTimetable} from '../libs/hooks/src';
 import {StyleService, Text, useStyleSheet} from '@ui-kitten/components';
 import moment, {Moment} from 'moment';
 import React from 'react';

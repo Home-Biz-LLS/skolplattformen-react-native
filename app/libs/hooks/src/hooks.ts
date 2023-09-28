@@ -12,10 +12,10 @@ import {
   SchoolContact,
   Skola24Child,
   Teacher,
-  // TimetableEntry,
+  TimetableEntry,
   User,
 } from '../../api/lib';
-// import {Language} from '@skolplattformen/curriculum';
+import {Language} from '../../../libs/curriculum/src';
 import {DateTime} from 'luxon';
 import {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
@@ -221,41 +221,41 @@ export const useTeachers = (child: Child) =>
     api => () => api.getTeachers(child),
   );
 
-// export const useTimetable = (
-//   child: Child,
-//   week: number,
-//   year: number,
-//   lang: Language,
-// ) =>
-//   hook<TimetableEntry[]>(
-//     'TIMETABLE',
-//     `timetable_${child.personGuid}_${week}_${year}_${lang}`,
-//     [],
-//     s => s.timetable,
-//     api => async () => {
-//       const tt = await api.getTimetable(child, week, year, lang);
-//       const ts = await api.getTeachers(child);
-//       tt.forEach(element => {
-//         element.teacher = replaceTeacherInitials(element.teacher, ts);
-//       });
-//       return tt;
-//     },
-// );
+export const useTimetable = (
+  child: Child,
+  week: number,
+  year: number,
+  lang: Language,
+) =>
+  hook<TimetableEntry[]>(
+    'TIMETABLE',
+    `timetable_${child.personGuid}_${week}_${year}_${lang}`,
+    [],
+    s => s.timetable,
+    api => async () => {
+      const tt = await api.getTimetable(child, week, year, lang);
+      const ts = await api.getTeachers(child);
+      tt.forEach(element => {
+        element.teacher = replaceTeacherInitials(element.teacher, ts);
+      });
+      return tt;
+    },
+  );
 
-// const replaceTeacherInitials = (
-//   initials: string,
-//   teachers: Teacher[],
-// ): string => {
-//   if (!initials || teachers?.length == 0) return initials;
-//   const arr = initials.split(',') || [initials];
-//   const arr2 = arr.map(element => {
-//     const t = teachers.find(
-//       t => t.timeTableAbbreviation === element.trim().toUpperCase(),
-//     );
-//     return t ? `${t.firstname} ${t.lastname}` : element;
-//   });
-//   return arr2.join(', ');
-// };
+const replaceTeacherInitials = (
+  initials: string,
+  teachers: Teacher[],
+): string => {
+  if (!initials || teachers?.length == 0) return initials;
+  const arr = initials.split(',') || [initials];
+  const arr2 = arr.map(element => {
+    const t = teachers.find(
+      t => t.timeTableAbbreviation === element.trim().toUpperCase(),
+    );
+    return t ? `${t.firstname} ${t.lastname}` : element;
+  });
+  return arr2.join(', ');
+};
 
 export const useUser = () =>
   hook<User>(

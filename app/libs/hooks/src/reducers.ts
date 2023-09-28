@@ -9,7 +9,7 @@ import {
   SchoolContact,
   Skola24Child,
   Teacher,
-  // TimetableEntry,
+  TimetableEntry,
   User,
 } from '../../api/lib';
 import {EntityName, EntityReducer, EntityState} from './types';
@@ -80,6 +80,6 @@ export const news = createReducer<NewsItem[]>('NEWS');
 export const newsDetails = createReducer<NewsItem[]>('NEWS_DETAILS');
 export const notifications = createReducer<Notification[]>('NOTIFICATIONS');
 export const schedule = createReducer<ScheduleItem[]>('SCHEDULE');
-// export const timetable = createReducer<TimetableEntry[]>('TIMETABLE');
+export const timetable = createReducer<TimetableEntry[]>('TIMETABLE');
 export const teachers = createReducer<Teacher[]>('TEACHERS');
 export const schoolContacts = createReducer<SchoolContact[]>('SCHOOL_CONTACTS');

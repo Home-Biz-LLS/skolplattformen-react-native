@@ -8,5 +8,5 @@ export * from './notifications';
 export * from './schedule';
 export * from './schoolContacts';
 export * from './teachers';
-// export * from './timetable';
+export * from './timetable';
 export * from './user';
