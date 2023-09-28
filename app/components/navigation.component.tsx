@@ -74,9 +74,9 @@ const linking = {
 };
 
 export const AppNavigator = () => {
-  // const {isLoggedIn, api} = useApi();
+  const {isLoggedIn, api} = useApi();
 
-  const isLoggedIn = false;
+  // const isLoggedIn = false;
   const [usingSystemTheme] = useSettingsStorage('usingSystemTheme');
   const [theme] = useSettingsStorage('theme');
   const systemTheme = useColorScheme();
@@ -91,18 +91,18 @@ export const AppNavigator = () => {
     initializeSettingsState();
   }, []);
 
-  // useEffect(() => {
-  //   const checkUser = async () => {
-  //     if (currentAppState === 'active' && isLoggedIn) {
-  //       const {isAuthenticated} = await api.getUser();
+  useEffect(() => {
+    const checkUser = async () => {
+      if (currentAppState === 'active' && isLoggedIn) {
+        const {isAuthenticated} = await api.getUser();
 
-  //       if (!isAuthenticated) {
-  //         await api.logout();
-  //       }
-  //     }
-  //   };
-  //   checkUser();
-  // }, [currentAppState, isLoggedIn, api]);
+        if (!isAuthenticated) {
+          await api.logout();
+        }
+      }
+    };
+    checkUser();
+  }, [currentAppState, isLoggedIn, api]);
 
   return (
     <NavigationContainer
