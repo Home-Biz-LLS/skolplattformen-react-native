@@ -22,7 +22,7 @@ import {Auth, authRouteOptions} from './auth.component';
 import {Child, childRouteOptions} from './child.component';
 import {childenRouteOptions, Children} from './children.component';
 // import {libraryRouteOptions, LibraryScreen} from './library.component';
-// import {NewsItem, newsItemRouteOptions} from './newsItem.component';
+import {NewsItem, newsItemRouteOptions} from './newsItem.component';
 // import {SetLanguage, setLanguageRouteOptions} from './setLanguage.component';
 // import {settingsRouteOptions, SettingsScreen} from './settings.component';
 // import {
@@ -140,12 +140,12 @@ export const AppNavigator = () => {
               component={Child}
               options={childRouteOptions(colorScheme === 'dark')}
             />
-            {/* <Screen
+            <Screen
               name="NewsItem"
               component={NewsItem}
               options={newsItemRouteOptions(colorScheme === 'dark')}
             />
-            <Screen
+            {/*   <Screen
               name="Absence"
               component={Absence}
               options={absenceRouteOptions(colorScheme === 'dark')}
