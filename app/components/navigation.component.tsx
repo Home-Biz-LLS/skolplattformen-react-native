@@ -54,7 +54,7 @@ export type RootStackParamList = {
     color: string;
     initialRouteName?: string;
   };
-  // NewsItem: {newsItem: NewsItemType; child: ChildType};
+  NewsItem: {newsItem: NewsItemType; child: ChildType};
   Absence: {child: ChildType};
   // SetLanguage: undefined;
 };
