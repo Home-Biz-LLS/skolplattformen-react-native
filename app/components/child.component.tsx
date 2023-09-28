@@ -14,14 +14,14 @@ import {defaultStackStyling} from '../design/navigationThemes';
 import {useFeature} from '../hooks/useFeature';
 import {studentName} from '../utils/peopleHelpers';
 // import {translate} from '../utils/translation';
-// import {Calendar} from './calendar.component';
+import {Calendar} from './calendar.component';
 import {ChildProvider} from './childContext.component';
-// import {Classmates} from './classmates.component';
-// import {Menu} from './menu.component';
+import {Classmates} from './classmates.component';
+import {Menu} from './menu.component';
 import {RootStackParamList} from './navigation.component';
 import {NavigationTitle} from './navigationTitle.component';
 import {NewsList} from './newsList.component';
-// import {NotificationsList} from './notificationsList.component';
+import {NotificationsList} from './notificationsList.component';
 import {TabBarLabel} from './tabBarLabel.component';
 
 const translate = (key: string) => key;
@@ -45,10 +45,10 @@ export type ChildTabParamList = {
 const {Navigator, Screen} = createBottomTabNavigator<ChildTabParamList>();
 
 const NewsScreen = () => <NewsList />;
-// const NotificationsScreen = () => <NotificationsList />;
-// const CalendarScreen = () => <Calendar />;
-// const MenuScreen = () => <Menu />;
-// const ClassmatesScreen = () => <Classmates />;
+const NotificationsScreen = () => <NotificationsList />;
+const CalendarScreen = () => <Calendar />;
+const MenuScreen = () => <Menu />;
+const ClassmatesScreen = () => <Classmates />;
 
 interface ScreenSettings {
   NEWS_SCREEN: boolean;
@@ -99,7 +99,7 @@ const TabNavigator = ({
         options={{title: translate('navigation.news'), headerShown: false}}
       />
     )}
-    {/* {screenSettings.NOTIFICATIONS_SCREEN && (
+    {screenSettings.NOTIFICATIONS_SCREEN && (
       <Screen
         name="Notifications"
         component={NotificationsScreen}
@@ -135,7 +135,7 @@ const TabNavigator = ({
           headerShown: false,
         }}
       />
-    )} */}
+    )}
   </Navigator>
 );
 
