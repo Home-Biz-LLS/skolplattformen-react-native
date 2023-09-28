@@ -1,4 +1,4 @@
-import {parseDate, Notification} from '../../../../libs/api/lib';
+import {parseDate, Notification} from '@skolplattformen/api';
 import {etjanst} from './etjanst';
 
 export const notification = ({

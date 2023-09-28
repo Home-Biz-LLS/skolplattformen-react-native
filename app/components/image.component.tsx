@@ -1,4 +1,4 @@
-import {useApi} from '../libs/hooks/src';
+import {useApi} from '@skolplattformen/hooks';
 import React, {useCallback, useEffect, useState} from 'react';
 import {
   Image as ImageBase,

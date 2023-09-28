@@ -1,5 +1,5 @@
-// import {Features, FeatureType} from '../../libs/api/lib';
-import {Features} from '../../libs/api/lib';
+// import {Features, FeatureType} from '@skolplattformen/api';
+import {Features} from '@skolplattformen/api';
 import React from 'react';
 
 export const FeatureFlagsContext = React.createContext<Features>({

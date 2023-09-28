@@ -1,5 +1,5 @@
 /* eslint-disable react-native-a11y/has-accessibility-hint */
-import {Classmate} from '../libs/api/lib';
+import {Classmate} from '@skolplattformen/api';
 import {Button, MenuGroup, MenuItem, OverflowMenu} from '@ui-kitten/components';
 import React from 'react';
 import {Linking, StyleSheet} from 'react-native';

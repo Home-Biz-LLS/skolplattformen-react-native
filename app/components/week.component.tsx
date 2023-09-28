@@ -1,5 +1,5 @@
-import {Child, MenuItem, TimetableEntry} from '../libs/api/lib';
-import {useMenu, useTimetable} from '../libs/hooks/src';
+import {Child, MenuItem, TimetableEntry} from '@skolplattformen/api';
+import {useMenu, useTimetable} from '@skolplattformen/hooks';
 import {
   List,
   ListItem,

@@ -1,4 +1,4 @@
-import {MenuItem, MenuList, toMarkdown} from '../../../../libs/api/lib';
+import {MenuItem, MenuList, toMarkdown} from '@skolplattformen/api';
 import {etjanst} from './etjanst';
 
 export const menuItem = ({title, description}: any): MenuItem => ({

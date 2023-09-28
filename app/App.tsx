@@ -24,8 +24,8 @@ import {
   // ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import {AppNavigator} from './components/navigation.component';
-// import {ApiProvider, Reporter} from './libs/hooks/src';
-import {ApiProvider} from './libs/hooks/src';
+// import {ApiProvider, Reporter} from '@skolplattformen/hooks';
+import {ApiProvider} from '@skolplattformen/hooks';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FeatureProvider} from './context/feature/featureContext';
 import {ApplicationProvider} from '@ui-kitten/components';

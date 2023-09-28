@@ -15,7 +15,7 @@ import {
   TimetableEntry,
   User,
 } from '../../api/lib';
-import {Language} from '../../../libs/curriculum/src';
+import {Language} from '@skolplattformen/curriculum';
 import {DateTime} from 'luxon';
 import {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';

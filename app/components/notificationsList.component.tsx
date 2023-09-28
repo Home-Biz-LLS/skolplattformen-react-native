@@ -1,4 +1,4 @@
-import {useNotifications} from '../libs/hooks/src';
+import {useNotifications} from '@skolplattformen/hooks';
 import {List, StyleService, useStyleSheet} from '@ui-kitten/components';
 import React from 'react';
 import {RefreshControl} from 'react-native';

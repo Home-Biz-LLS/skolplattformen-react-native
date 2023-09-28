@@ -1,4 +1,4 @@
-import {NewsItem, parseDate, toMarkdown} from '../../../../libs/api/lib';
+import {NewsItem, parseDate, toMarkdown} from '@skolplattformen/api';
 import {etjanst} from './etjanst';
 
 const IMAGE_HOST =

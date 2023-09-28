@@ -1,7 +1,7 @@
 /* eslint-disable react-native-a11y/has-accessibility-hint */
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Child} from '../libs/api/lib';
+import {Child} from '@skolplattformen/api';
 import {
   useCalendar,
   useClassmates,
@@ -9,7 +9,7 @@ import {
   useNews,
   useNotifications,
   useSchedule,
-} from '../libs/hooks/src';
+} from '@skolplattformen/hooks';
 import {Button, StyleService, Text, useStyleSheet} from '@ui-kitten/components';
 import moment, {Moment} from 'moment';
 import React, {useEffect} from 'react';

@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import {useApi} from '../libs/hooks/src';
+import {useApi} from '@skolplattformen/hooks';
 import {
   Button,
   ButtonGroup,
@@ -266,7 +266,7 @@ export const Login = () => {
             status="primary"
             // accessoryLeft={LoginProviderImage}
             size="medium">
-            'currentLoginMethod.title'
+            {t('currentLoginMethod.title')}
           </Button>
           <Button
             accessible={true}
