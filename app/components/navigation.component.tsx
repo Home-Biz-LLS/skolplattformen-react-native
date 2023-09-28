@@ -19,7 +19,7 @@ import useSettingsStorage, {
 // import {isRTL} from '../services/languageService';
 // import Absence, {absenceRouteOptions} from './absence.component';
 import {Auth, authRouteOptions} from './auth.component';
-// import {Child, childRouteOptions} from './child.component';
+import {Child, childRouteOptions} from './child.component';
 import {childenRouteOptions, Children} from './children.component';
 // import {libraryRouteOptions, LibraryScreen} from './library.component';
 // import {NewsItem, newsItemRouteOptions} from './newsItem.component';
@@ -135,12 +135,12 @@ export const AppNavigator = () => {
               component={Children}
               options={childenRouteOptions(colorScheme === 'dark')}
             />
-            {/* <Screen
+            <Screen
               name="Child"
               component={Child}
               options={childRouteOptions(colorScheme === 'dark')}
             />
-            <Screen
+            {/* <Screen
               name="NewsItem"
               component={NewsItem}
               options={newsItemRouteOptions(colorScheme === 'dark')}
