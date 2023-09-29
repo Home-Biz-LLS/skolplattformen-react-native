@@ -77,7 +77,10 @@ export const Auth: React.FC<AuthProps> = ({navigation}) => {
                 width={28}
                 fill={colors['color-primary-500']}
               /> */}
-              <Text style={styles.languageText}>{t('general.settings')}</Text>
+              <Text style={styles.languageText}>
+                {/* {t('general.settings')} */}
+                general.settings
+              </Text>
             </View>
           </TouchableOpacity>
           <KeyboardAvoidingView>

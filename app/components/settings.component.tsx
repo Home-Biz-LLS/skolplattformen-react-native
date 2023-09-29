@@ -10,11 +10,11 @@ import {Layout as LayoutStyle, Sizing} from '../styles';
 import {languages, translate} from '../utils/translation';
 // import {AwardIcon, BrushIcon, GlobeIcon} from './icon.component';
 import {RootStackParamList} from './navigation.component';
-// import {
-//   SettingGroup,
-//   SettingListItem,
-//   SettingListSeparator,
-// } from './settingsComponents.component';
+import {
+  SettingGroup,
+  SettingListItem,
+  SettingListSeparator,
+} from './settingsComponents.component';
 // import {VersionInfo} from './versionInfo.component';
 
 export const settingsRouteOptions = (): NativeStackNavigationOptions => ({
@@ -72,6 +72,8 @@ export const SettingsScreen = () => {
           onNavigate={() => navigation.navigate('SettingsLicenses')}
         />
       </SettingGroup>
+
+      */}
       {api.isLoggedIn && (
         <SettingGroup>
           <SettingListItem
@@ -81,7 +83,7 @@ export const SettingsScreen = () => {
         </SettingGroup>
       )}
 
-      <VersionInfo /> */}
+      {/* <VersionInfo />  */}
     </ScrollView>
   );
 };

@@ -1,4 +1,4 @@
-// import {NavigationProp, useNavigation} from '@react-navigation/core';
+import {NavigationProp, useNavigation} from '@react-navigation/core';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 import {Child} from '../libs/api/lib';
 import {useApi, useChildList} from '../libs/hooks/src';
@@ -8,7 +8,7 @@ import {
   Spinner,
   StyleService,
   Text,
-  // TopNavigationAction,
+  TopNavigationAction,
   useStyleSheet,
 } from '@ui-kitten/components';
 import moment from 'moment';
@@ -44,7 +44,7 @@ export const childenRouteOptions =
 export const Children = () => {
   const styles = useStyleSheet(themedStyles);
 
-  // const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const {api} = useApi();
   const {data: childList, status, reload} = useChildList();
@@ -59,28 +59,35 @@ export const Children = () => {
     AppStorage.clearTemporaryItems().then(() => api.logout());
   }, [api]);
 
-  // useEffect(() => {
-  //   navigation.setOptions({
-  //     headerLeft: () => {
-  //       return (
-  //         <TopNavigationAction
-  //           icon={SettingsIcon}
-  //           onPress={() => navigation.navigate('Settings')}
-  //         />
-  //       );
-  //     },
-  //     headerRight: () => {
-  //       return (
-  //         <TopNavigationAction
-  //           icon={RefreshIcon}
-  //           onPress={() => reloadChildren()}
-  //           accessibilityHint="Reload"
-  //           accessibilityLabel="Reload"
-  //         />
-  //       );
-  //     },
-  //   });
-  // }, [navigation, reloadChildren]);
+  useEffect(() => {
+    navigation.setOptions({
+      headerLeft: () => {
+        return (
+          // <TopNavigationAction
+          //   title="Settings"
+          //   // icon={SettingsIcon}
+          //   onPress={() => navigation.navigate('Settings')}
+          // />
+          <Text
+            // title="settings"
+            onPress={() => navigation.navigate('Settings')}>
+            Settings
+          </Text>
+        );
+      },
+      headerRight: () => {
+        return (
+          <TopNavigationAction
+            title="Settings"
+            // icon={RefreshIcon}
+            onPress={() => reloadChildren()}
+            accessibilityHint="Reload"
+            accessibilityLabel="Reload"
+          />
+        );
+      },
+    });
+  }, [navigation, reloadChildren]);
 
   // We need to skip safe area view here, due to the reason that it's adding a white border
   // when this view is actually lightgrey. Taking the padding top value from the use inset hook.

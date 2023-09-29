@@ -12,7 +12,7 @@ import {
   lightNavigationTheme,
 } from '../design/navigationThemes';
 import {useAppState} from '../hooks/useAppState';
-// import {useLangCode} from '../hooks/useLangCode';
+import {useLangCode} from '../hooks/useLangCode';
 import useSettingsStorage, {
   initializeSettingsState,
 } from '../hooks/useSettingsStorage';
@@ -43,12 +43,12 @@ export type RootStackParamList = {
   IsLoggedIn: undefined;
   Children: undefined;
   Settings: {rand?: number} | undefined;
-  // SettingsAppearance: undefined;
-  // SettingsAppearanceTheme: undefined;
-  // SettingsLicenses: undefined;
-  // // Library: {
-  // //   library: Library;
-  // // };
+  SettingsAppearance: undefined;
+  SettingsAppearanceTheme: undefined;
+  SettingsLicenses: undefined;
+  // Library: {
+  //   library: Library;
+  // };
   Child: {
     child: ChildType;
     color: string;
@@ -56,7 +56,7 @@ export type RootStackParamList = {
   };
   NewsItem: {newsItem: NewsItemType; child: ChildType};
   Absence: {child: ChildType};
-  // SetLanguage: undefined;
+  SetLanguage: undefined;
 };
 
 const {Navigator, Screen} = createNativeStackNavigator<RootStackParamList>();
@@ -78,7 +78,7 @@ export const AppNavigator = () => {
   const [theme] = useSettingsStorage('theme');
   const systemTheme = useColorScheme();
   const colorScheme = usingSystemTheme ? systemTheme : theme;
-  // const langCode = useLangCode();
+  const langCode = useLangCode();
 
   const colors = useTheme();
 
@@ -129,7 +129,6 @@ export const AppNavigator = () => {
         })}>
         {isLoggedIn ? (
           <>
-            {/* <Screen name="IsLoggedIn" component={IsLoggedIn} /> */}
             <Screen
               name="Children"
               component={Children}
@@ -153,7 +152,6 @@ export const AppNavigator = () => {
           </>
         ) : (
           <Screen name="Login" component={Auth} options={authRouteOptions} />
-          // <Screen name="Test" component={Test} />
         )}
         {/* <Screen
           name="SetLanguage"
