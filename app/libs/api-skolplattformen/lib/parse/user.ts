@@ -1,4 +1,4 @@
-import {User} from '@skolplattformen/api';
+import {User} from '../../../../libs/api/lib';
 
 export const user = ({
   socialSecurityNumber,

@@ -1,4 +1,4 @@
-import {TimetableEntry} from '@skolplattformen/api';
+import {TimetableEntry} from '../../../../libs/api/lib';
 import parse, {Language} from '../../../curriculum/src';
 import {DateTime} from 'luxon';
 

@@ -115,8 +115,8 @@ export interface NewsItem {
   header?: string;
   intro?: string;
   body?: string;
-  published: string;
-  modified?: string;
+  published: string | null; // null added for fakeData news.ts to not have type error
+  modified?: string | null; // null added for fakeData news.ts to not have type error
   imageUrl?: string;
   fullImageUrl?: string;
   imageAltText?: string;

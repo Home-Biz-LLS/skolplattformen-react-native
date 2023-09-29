@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import {useApi} from '@skolplattformen/hooks';
+import {useApi} from '../libs/hooks/src';
 import {
   Button,
   ButtonGroup,

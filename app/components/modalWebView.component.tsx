@@ -1,4 +1,4 @@
-import {useApi} from '@skolplattformen/hooks';
+import {useApi} from '../libs/hooks/src';
 import {StyleService, Text, useStyleSheet} from '@ui-kitten/components';
 import React, {useEffect, useState} from 'react';
 import {Linking, Modal, TouchableOpacity, View} from 'react-native';

@@ -1,5 +1,5 @@
-import {Classmate} from '@skolplattformen/api';
-import {useClassmates} from '@skolplattformen/hooks';
+import {Classmate} from '../libs/api/lib';
+import {useClassmates} from '../libs/hooks/src';
 import {
   Divider,
   // Icon,

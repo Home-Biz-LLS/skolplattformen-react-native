@@ -10,7 +10,7 @@ import {
   SchoolContact,
   Skola24Child,
   Teacher,
-  // TimetableEntry,
+  TimetableEntry,
   User,
 } from '../../api/lib';
 import {Action, Reducer} from 'redux';
@@ -94,7 +94,7 @@ export interface EntityStoreRootState {
   schedule: EntityMap<ScheduleItem[]>;
   schoolContacts: EntityMap<SchoolContact[]>;
   teachers: EntityMap<Teacher[]>;
-  // timetable: EntityMap<TimetableEntry[]>;
+  timetable: EntityMap<TimetableEntry[]>;
 }
 
 export interface EntityHookResult<T> extends EntityState<T> {

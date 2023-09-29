@@ -1,4 +1,4 @@
-import {parseDate, ScheduleItem} from '@skolplattformen/api';
+import {parseDate, ScheduleItem} from '../../../../libs/api/lib';
 import {etjanst} from './etjanst';
 
 export const scheduleItem = ({

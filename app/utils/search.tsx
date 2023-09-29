@@ -1,5 +1,5 @@
-import {NewsItem} from '@skolplattformen/api';
-import {useNews} from '@skolplattformen/hooks';
+import {NewsItem} from '../libs/api/lib';
+import {useNews} from '../libs/hooks/src';
 import {MatchData, Searcher} from 'fast-fuzzy';
 import React, {ReactNode, useMemo} from 'react';
 import {Text} from 'react-native';

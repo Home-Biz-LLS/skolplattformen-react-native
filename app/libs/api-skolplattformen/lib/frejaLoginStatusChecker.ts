@@ -4,7 +4,7 @@ import {
   Fetcher,
   FrejaLoginStatusChecker,
   RequestInit,
-} from '@skolplattformen/api';
+} from '../../../libs/api/lib';
 export class FrejaChecker
   extends EventEmitter
   implements FrejaLoginStatusChecker
