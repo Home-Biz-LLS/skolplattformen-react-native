@@ -27,7 +27,7 @@ import {childenRouteOptions, Children} from './children.component';
 // import {libraryRouteOptions, LibraryScreen} from './library.component';
 import {NewsItem, newsItemRouteOptions} from './newsItem.component';
 // import {SetLanguage, setLanguageRouteOptions} from './setLanguage.component';
-// import {settingsRouteOptions, SettingsScreen} from './settings.component';
+import {settingsRouteOptions, SettingsScreen} from './settings.component';
 // import {
 //   settingsAppearanceRouteOptions,
 //   SettingsAppearanceScreen,
@@ -162,13 +162,13 @@ export const AppNavigator = () => {
           name="SetLanguage"
           component={SetLanguage}
           options={setLanguageRouteOptions}
-        />
+        /> */}
         <Screen
           name="Settings"
           component={SettingsScreen}
           options={settingsRouteOptions}
         />
-        <Screen
+        {/* <Screen
           name="SettingsAppearance"
           component={SettingsAppearanceScreen}
           options={settingsAppearanceRouteOptions}
