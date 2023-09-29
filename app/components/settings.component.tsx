@@ -15,7 +15,7 @@ import {
   SettingListItem,
   SettingListSeparator,
 } from './settingsComponents.component';
-// import {VersionInfo} from './versionInfo.component';
+import {VersionInfo} from './versionInfo.component';
 
 export const settingsRouteOptions = (): NativeStackNavigationOptions => ({
   title: translate('settings.settings'),
@@ -82,7 +82,7 @@ export const SettingsScreen = () => {
         </SettingGroup>
       )}
 
-      {/* <VersionInfo />  */}
+      <VersionInfo />
     </ScrollView>
   );
 };
