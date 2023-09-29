@@ -3,7 +3,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Child as ChildType, NewsItem as NewsItemType} from '../libs/api/lib';
 import {useApi} from '../libs/hooks/src';
 import {useTheme} from '@ui-kitten/components';
-// import {Library} from 'libraries.json';
+import {Library} from 'libraries.json';
 import React, {useEffect} from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {schema} from '../app.json';
@@ -21,7 +21,7 @@ import {isRTL} from '../services/languageService';
 import {Auth, authRouteOptions} from './auth.component';
 import {Child, childRouteOptions} from './child.component';
 import {childenRouteOptions, Children} from './children.component';
-// import {libraryRouteOptions, LibraryScreen} from './library.component';
+import {libraryRouteOptions, LibraryScreen} from './library.component';
 import {NewsItem, newsItemRouteOptions} from './newsItem.component';
 import {SetLanguage, setLanguageRouteOptions} from './setLanguage.component';
 import {settingsRouteOptions, SettingsScreen} from './settings.component';
@@ -33,10 +33,10 @@ import {
   settingsAppearanceThemeRouteOptions,
   SettingsAppearanceThemeScreen,
 } from './settingsAppearanceTheme.component';
-// import {
-//   settingsLicensesRouteOptions,
-//   SettingsLicensesScreen,
-// } from './settingsLicenses.component';
+import {
+  settingsLicensesRouteOptions,
+  SettingsLicensesScreen,
+} from './settingsLicenses.component';
 
 export type RootStackParamList = {
   Login: undefined;
@@ -46,9 +46,9 @@ export type RootStackParamList = {
   SettingsAppearance: undefined;
   SettingsAppearanceTheme: undefined;
   SettingsLicenses: undefined;
-  // Library: {
-  //   library: Library;
-  // };
+  Library: {
+    library: Library;
+  };
   Child: {
     child: ChildType;
     color: string;
@@ -172,7 +172,6 @@ export const AppNavigator = () => {
           component={SettingsAppearanceThemeScreen}
           options={settingsAppearanceThemeRouteOptions}
         />
-        {/*
         <Screen
           name="SettingsLicenses"
           component={SettingsLicensesScreen}
@@ -182,7 +181,7 @@ export const AppNavigator = () => {
           name="Library"
           component={LibraryScreen}
           options={libraryRouteOptions}
-        /> */}
+        />
       </Navigator>
     </NavigationContainer>
   );

@@ -7,7 +7,9 @@
     "ios": "react-native run-ios --simulator \"iPhone 14 pro max\"",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "extract-licenses": "react-native-oss-license --json > licenses-oss.json && node library-extractor.js && rm licenses-oss.json",
+    "postinstall": "yarn extract-licenses"
   },
   "dependencies": {
     "@eva-design/eva": "^2.2.0",
@@ -39,6 +41,7 @@
     "react-native-device-info": "^10.11.0",
     "react-native-gesture-handler": "^2.13.1",
     "react-native-localize": "^3.0.2",
+    "react-native-oss-license": "^0.7.0",
     "react-native-restart": "^0.0.27",
     "react-native-safe-area-context": "^4.7.2",
     "react-native-screens": "^3.25.0",

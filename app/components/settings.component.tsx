@@ -65,13 +65,13 @@ export const SettingsScreen = () => {
           onNavigate={() => navigation.navigate('SetLanguage')}
         />
       </SettingGroup>
-      {/* <SettingGroup>
+      <SettingGroup>
         <SettingListItem
           label={translate('settings.licenses')}
-          icon={AwardIcon}
+          // icon={AwardIcon}
           onNavigate={() => navigation.navigate('SettingsLicenses')}
         />
-      </SettingGroup> */}
+      </SettingGroup>
 
       {api.isLoggedIn && (
         <SettingGroup>
