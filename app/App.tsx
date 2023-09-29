@@ -33,6 +33,8 @@ import initSkolplattformen, {
   features as featuresSkolPlattformen,
 } from './libs/api-skolplattformen/lib';
 import CookieManager from '@react-native-cookies/cookies';
+// import {LanguageProvider} from './context/language/languageContext';
+// import {translations} from './utils/translation';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -59,7 +61,9 @@ function App(): JSX.Element {
             barStyle={isDarkMode ? 'light-content' : 'dark-content'}
             backgroundColor={backgroundStyle.backgroundColor}
           />
+          {/* <LanguageProvider cache={true} data={translations}> */}
           <AppNavigator />
+          {/* </LanguageProvider> */}
         </ApplicationProvider>
       </ApiProvider>
     </FeatureProvider>

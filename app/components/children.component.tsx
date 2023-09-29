@@ -23,10 +23,10 @@ import {
 import {defaultStackStyling} from '../design/navigationThemes';
 import AppStorage from '../services/appStorage';
 import {Layout as LayoutStyle, Sizing, Typography} from '../styles';
-// import {translate} from '../utils/translation';
+import {translate} from '../utils/translation';
 import {ChildListItem} from './childListItem.component';
 // import {RefreshIcon, SettingsIcon} from './icon.component';
-// import {RootStackParamList} from './navigation.component';
+import {RootStackParamList} from './navigation.component';
 
 const colors = ['primary', 'success', 'info', 'warning', 'danger'];
 
@@ -34,7 +34,7 @@ export const childenRouteOptions =
   (darkMode: boolean) => (): NativeStackNavigationOptions => {
     return {
       ...defaultStackStyling(darkMode),
-      // title: translate('children.title'),
+      title: translate('children.title'),
       title: 'children.title',
       headerLargeTitle: true,
       headerLargeTitleShadowVisible: false,

@@ -16,14 +16,14 @@ import {useLangCode} from '../hooks/useLangCode';
 import useSettingsStorage, {
   initializeSettingsState,
 } from '../hooks/useSettingsStorage';
-// import {isRTL} from '../services/languageService';
+import {isRTL} from '../services/languageService';
 // import Absence, {absenceRouteOptions} from './absence.component';
 import {Auth, authRouteOptions} from './auth.component';
 import {Child, childRouteOptions} from './child.component';
 import {childenRouteOptions, Children} from './children.component';
 // import {libraryRouteOptions, LibraryScreen} from './library.component';
 import {NewsItem, newsItemRouteOptions} from './newsItem.component';
-// import {SetLanguage, setLanguageRouteOptions} from './setLanguage.component';
+import {SetLanguage, setLanguageRouteOptions} from './setLanguage.component';
 import {settingsRouteOptions, SettingsScreen} from './settings.component';
 // import {
 //   settingsAppearanceRouteOptions,
@@ -73,7 +73,6 @@ const linking = {
 export const AppNavigator = () => {
   const {isLoggedIn, api} = useApi();
 
-  // const isLoggedIn = false;
   const [usingSystemTheme] = useSettingsStorage('usingSystemTheme');
   const [theme] = useSettingsStorage('theme');
   const systemTheme = useColorScheme();
@@ -113,7 +112,7 @@ export const AppNavigator = () => {
         screenOptions={() => ({
           headerLargeTitle: false,
           headerLargeTitleHideShadow: true,
-          // direction: isRTL(langCode) ? 'rtl' : 'ltr',
+          direction: isRTL(langCode) ? 'rtl' : 'ltr',
           headerStyle: {
             backgroundColor:
               colorScheme === 'dark'
@@ -153,11 +152,11 @@ export const AppNavigator = () => {
         ) : (
           <Screen name="Login" component={Auth} options={authRouteOptions} />
         )}
-        {/* <Screen
+        <Screen
           name="SetLanguage"
           component={SetLanguage}
           options={setLanguageRouteOptions}
-        /> */}
+        />
         <Screen
           name="Settings"
           component={SettingsScreen}

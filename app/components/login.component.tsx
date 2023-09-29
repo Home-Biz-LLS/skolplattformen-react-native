@@ -29,7 +29,7 @@ import {
 // import {schoolPlatforms} from '../data/schoolPlatforms';
 import {useFeature} from '../hooks/useFeature';
 import useSettingsStorage from '../hooks/useSettingsStorage';
-// import {useTranslation} from '../hooks/useTranslation';
+import {useTranslation} from '../hooks/useTranslation';
 import {Layout} from '../styles';
 // import {
 //   CheckIcon,
@@ -304,8 +304,8 @@ export const Login = () => {
         backdropStyle={styles.backdrop}>
         <Card>
           <Text category="h5" style={styles.bankIdLoading}>
-            {/* {t('auth.chooseLoginMethod')} */}
-            {'auth.chooseLoginMethod'}
+            {t('auth.chooseLoginMethod')}
+            {/* {'auth.chooseLoginMethod'} */}
           </Text>
           <List
             data={

@@ -46,8 +46,8 @@ export const SettingsScreen = () => {
         padding: Sizing.t4,
       }}>
       <Text>Settings</Text>
-      {/* <SettingGroup>
-        <SettingListItem
+      <SettingGroup>
+        {/* <SettingListItem
           label={translate('settings.appearance')}
           value={
             isUsingSystemTheme
@@ -56,24 +56,23 @@ export const SettingsScreen = () => {
           }
           icon={BrushIcon}
           onNavigate={() => navigation.navigate('SettingsAppearance')}
-        />
-        <SettingListSeparator />
+        /> */}
+        {/* <SettingListSeparator /> */}
         <SettingListItem
           label={translate('settings.language')}
           value={language?.languageLocalName}
-          icon={GlobeIcon}
+          // icon={GlobeIcon}
           onNavigate={() => navigation.navigate('SetLanguage')}
         />
       </SettingGroup>
-      <SettingGroup>
+      {/* <SettingGroup>
         <SettingListItem
           label={translate('settings.licenses')}
           icon={AwardIcon}
           onNavigate={() => navigation.navigate('SettingsLicenses')}
         />
-      </SettingGroup>
+      </SettingGroup> */}
 
-      */}
       {api.isLoggedIn && (
         <SettingGroup>
           <SettingListItem

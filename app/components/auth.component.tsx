@@ -15,7 +15,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-// import {useTranslation} from '../hooks/useTranslation';
+import {useTranslation} from '../hooks/useTranslation';
 import {Layout as LayoutStyle, Sizing, Typography} from '../styles';
 import {fontSize} from '../styles/typography';
 import {KeyboardAvoidingView} from '../ui/keyboardAvoidingView.component';
@@ -24,17 +24,17 @@ import {SafeAreaView} from '../ui/safeAreaView.component';
 import {Login} from './login.component';
 import {RootStackParamList} from './navigation.component';
 
-// const randomWord = (
-//   t: (scope: I18n.Scope, options?: I18n.TranslateOptions | undefined) => string,
-// ) => {
-//   const words = t('auth.words');
-//   const keys = Object.keys(words);
+const randomWord = (
+  t: (scope: I18n.Scope, options?: I18n.TranslateOptions | undefined) => string,
+) => {
+  const words = t('auth.words');
+  const keys = Object.keys(words);
 
-//   const randomIndex: number = Math.floor(Math.random() * keys.length);
-//   const argumentKey: string = keys[randomIndex];
+  const randomIndex: number = Math.floor(Math.random() * keys.length);
+  const argumentKey: string = keys[randomIndex];
 
-//   return words[argumentKey];
-// };
+  return words[argumentKey];
+};
 
 interface AuthProps {
   navigation: StackNavigationProp<RootStackParamList, 'Login'>;

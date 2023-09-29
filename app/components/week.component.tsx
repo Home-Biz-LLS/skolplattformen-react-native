@@ -17,7 +17,7 @@ import {LanguageService} from '../services/languageService';
 import {Sizing, Typography} from '../styles';
 import {TransitionView} from './transitionView.component';
 import {getMeaningfulStartingDate} from '../utils/calendarHelpers';
-// import {translate} from '../utils/translation';
+import {translate} from '../utils/translation';
 
 interface WeekProps {
   child: Child;
