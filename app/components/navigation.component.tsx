@@ -25,14 +25,14 @@ import {childenRouteOptions, Children} from './children.component';
 import {NewsItem, newsItemRouteOptions} from './newsItem.component';
 import {SetLanguage, setLanguageRouteOptions} from './setLanguage.component';
 import {settingsRouteOptions, SettingsScreen} from './settings.component';
-// import {
-//   settingsAppearanceRouteOptions,
-//   SettingsAppearanceScreen,
-// } from './settingsAppearance.component';
-// import {
-//   settingsAppearanceThemeRouteOptions,
-//   SettingsAppearanceThemeScreen,
-// } from './settingsAppearanceTheme.component';
+import {
+  settingsAppearanceRouteOptions,
+  SettingsAppearanceScreen,
+} from './settingsAppearance.component';
+import {
+  settingsAppearanceThemeRouteOptions,
+  SettingsAppearanceThemeScreen,
+} from './settingsAppearanceTheme.component';
 // import {
 //   settingsLicensesRouteOptions,
 //   SettingsLicensesScreen,
@@ -162,7 +162,7 @@ export const AppNavigator = () => {
           component={SettingsScreen}
           options={settingsRouteOptions}
         />
-        {/* <Screen
+        <Screen
           name="SettingsAppearance"
           component={SettingsAppearanceScreen}
           options={settingsAppearanceRouteOptions}
@@ -172,6 +172,7 @@ export const AppNavigator = () => {
           component={SettingsAppearanceThemeScreen}
           options={settingsAppearanceThemeRouteOptions}
         />
+        {/*
         <Screen
           name="SettingsLicenses"
           component={SettingsLicensesScreen}

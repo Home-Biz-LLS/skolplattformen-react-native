@@ -47,17 +47,17 @@ export const SettingsScreen = () => {
       }}>
       <Text>Settings</Text>
       <SettingGroup>
-        {/* <SettingListItem
+        <SettingListItem
           label={translate('settings.appearance')}
           value={
             isUsingSystemTheme
               ? translate('settings.themeAuto')
               : translate(`themes.${settingsTheme}`)
           }
-          icon={BrushIcon}
+          // icon={BrushIcon}
           onNavigate={() => navigation.navigate('SettingsAppearance')}
-        /> */}
-        {/* <SettingListSeparator /> */}
+        />
+        <SettingListSeparator />
         <SettingListItem
           label={translate('settings.language')}
           value={language?.languageLocalName}
