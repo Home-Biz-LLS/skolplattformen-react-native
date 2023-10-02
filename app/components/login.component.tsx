@@ -35,7 +35,7 @@ import {
   // CheckIcon,
   // CloseOutlineIcon,
   PersonIcon,
-  // SelectIcon,
+  SelectIcon,
 } from './icon.component';
 // import AppStorage from '../services/appStorage';
 
@@ -274,7 +274,7 @@ export const Login = () => {
             style={styles.loginMethodButton}
             appearance="ghost"
             status="primary"
-            // accessoryLeft={SelectIcon}
+            accessoryLeft={SelectIcon}
             size="medium"
             // accessibilityHint={t('login.a11y_select_login_method', {
             //   defaultValue: 'Välj inloggningsmetod',
@@ -287,7 +287,7 @@ export const Login = () => {
             appearance="ghost"
             status="basic"
             size="small"
-            // accessoryRight={SelectIcon}
+            accessoryRight={SelectIcon}
             onPress={() => {
               setShowSchoolPlatformPicker(true);
             }}>
