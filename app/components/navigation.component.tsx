@@ -17,7 +17,7 @@ import useSettingsStorage, {
   initializeSettingsState,
 } from '../hooks/useSettingsStorage';
 import {isRTL} from '../services/languageService';
-// import Absence, {absenceRouteOptions} from './absence.component';
+import Absence, {absenceRouteOptions} from './absence.component';
 import {Auth, authRouteOptions} from './auth.component';
 import {Child, childRouteOptions} from './child.component';
 import {childenRouteOptions, Children} from './children.component';
@@ -143,11 +143,11 @@ export const AppNavigator = () => {
               component={NewsItem}
               options={newsItemRouteOptions(colorScheme === 'dark')}
             />
-            {/*   <Screen
+            <Screen
               name="Absence"
               component={Absence}
               options={absenceRouteOptions(colorScheme === 'dark')}
-            /> */}
+            />
           </>
         ) : (
           <Screen name="Login" component={Auth} options={authRouteOptions} />
