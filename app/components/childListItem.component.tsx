@@ -19,7 +19,7 @@ import {Colors, Layout, Sizing} from '../styles';
 import {getMeaningfulStartingDate} from '../utils/calendarHelpers';
 import {studentName} from '../utils/peopleHelpers';
 import {DaySummary} from './daySummary.component';
-// import {AlertIcon, RightArrowIcon} from './icon.component';
+import {AlertIcon, RightArrowIcon} from './icon.component';
 import {RootStackParamList} from './navigation.component';
 import {StudentAvatar} from './studentAvatar.component';
 
@@ -140,7 +140,7 @@ export const ChildListItem = ({
 
   const className = getClassName();
   const styles = useStyleSheet(themeStyles);
-  // const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'dark';
   const meaningfulStartingDate = getMeaningfulStartingDate(currentDate);
 
   // Hide menu if we want to show monday but it is not monday yet.
@@ -165,13 +165,13 @@ export const ChildListItem = ({
             </View>
           </View>
           <View style={styles.cardHeaderRight}>
-            {/* <RightArrowIcon
+            <RightArrowIcon
               style={styles.icon}
               fill={
                 isDarkMode ? Colors.neutral.gray200 : Colors.neutral.gray800
               }
               name="star"
-            /> */}
+            />
           </View>
         </View>
 
@@ -224,7 +224,7 @@ export const ChildListItem = ({
             accessibilityRole="button"
             accessibilityLabel={`${child.name}, ${t('abscense.title')}`}
             appearance="ghost"
-            // accessoryLeft={AlertIcon}
+            accessoryLeft={AlertIcon}
             status="primary"
             style={styles.absenceButton}
             onPress={() => navigation.navigate('Absence', {child})}>
