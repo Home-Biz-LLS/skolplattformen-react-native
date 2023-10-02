@@ -23,7 +23,7 @@ import {Layout as LayoutStyle, Sizing, Typography} from '../styles';
 import {studentName} from '../utils/peopleHelpers';
 import {useSMS} from '../utils/SMS';
 import {translate} from '../utils/translation';
-// import {AlertIcon} from './icon.component';
+import {AlertIcon} from './icon.component';
 import {RootStackParamList} from './navigation.component';
 import {NavigationTitle} from './navigationTitle.component';
 
@@ -153,9 +153,9 @@ const Absence = () => {
                 value={values.personalIdentityNumber}
                 style={styles.input}
                 placeholder="YYYYMMDD-XXXX"
-                // accessoryRight={
-                //   hasError('personalIdentityNumber') ? AlertIcon : undefined
-                // }
+                accessoryRight={
+                  hasError('personalIdentityNumber') ? AlertIcon : undefined
+                }
               />
               {hasError('personalIdentityNumber') && (
                 <Text style={styles.error}>
