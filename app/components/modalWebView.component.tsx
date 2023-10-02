@@ -5,7 +5,7 @@ import {Linking, Modal, TouchableOpacity, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {WebView} from 'react-native-webview';
 import {Layout, Sizing} from '../styles';
-// import {BackIcon, ExternalLinkIcon} from './icon.component';
+import {BackIcon, ExternalLinkIcon} from './icon.component';
 
 interface ModalWebViewProps {
   url: string;
@@ -22,8 +22,6 @@ export const ModalWebView = ({
   const [title, setTitle] = React.useState('...');
   const [headers, setHeaders] = useState<{[index: string]: string}>();
 
-  // console.log('headers', headers);
-  // console.log('api', api);
   useEffect(() => {
     const getHeaders = async (urlToGetSessionFor: string) => {
       if (sharedCookiesEnabled) return;
@@ -54,19 +52,19 @@ export const ModalWebView = ({
         <View style={styles.headerWrapper}>
           <View style={styles.header}>
             <TouchableOpacity onPress={closeModal}>
-              {/* <BackIcon
+              <BackIcon
                 style={styles.backIcon}
                 fill={styles.backIcon.shadowColor}
-              /> */}
+              />
             </TouchableOpacity>
             <Text category="s1" style={styles.headerText} numberOfLines={1}>
               {title}
             </Text>
             <TouchableOpacity onPress={openInApp}>
-              {/* <ExternalLinkIcon
+              <ExternalLinkIcon
                 style={styles.shareIcon}
                 fill={styles.shareIcon.shadowColor}
-              /> */}
+              />
             </TouchableOpacity>
           </View>
         </View>
