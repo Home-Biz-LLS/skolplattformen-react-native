@@ -3,14 +3,14 @@ import {
   StyleService,
   Text,
   useStyleSheet,
-  // useTheme,
+  useTheme,
 } from '@ui-kitten/components';
 import React, {useState} from 'react';
 import {Pressable, TouchableOpacity, View} from 'react-native';
 import {useLangRTL} from '../hooks/useLangRTL';
 import {Sizing} from '../styles';
 import {fontSize} from '../styles/typography';
-// import {CheckIcon, RightArrowIcon} from './icon.component';
+import {CheckIcon, RightArrowIcon} from './icon.component';
 
 export const SettingListItem = ({
   label,
@@ -27,7 +27,7 @@ export const SettingListItem = ({
   onPress?: () => void;
   children?: React.ReactNode;
 }) => {
-  // const textHintColor = useTheme()['text-hint-color'];
+  const textHintColor = useTheme()['text-hint-color'];
   const styles = useStyleSheet(themedStyles);
   const isRTL = useLangRTL();
 
@@ -62,7 +62,7 @@ export const SettingListItem = ({
               styles.arrow,
               {transform: [{rotateY: isRTL ? '180deg' : '0deg'}]},
             ]}>
-            {/* <RightArrowIcon width="24" height="24" fill={textHintColor} /> */}
+            <RightArrowIcon width="24" height="24" fill={textHintColor} />
           </View>
         )}
       </SettingListItemWrapper>
@@ -99,7 +99,7 @@ export const SettingGroup = ({children}: {children?: React.ReactNode}) => {
 export const SettingListItemSelectable = ({
   title,
   subTitle,
-  // isSelected,
+  isSelected,
   onPress,
 }: {
   title: string;
@@ -108,7 +108,7 @@ export const SettingListItemSelectable = ({
   onPress: () => void;
 }) => {
   const styles = useStyleSheet(themedStyles);
-  // const colors = useTheme();
+  const colors = useTheme();
 
   return (
     <TouchableOpacity style={styles.selectableButton} onPress={onPress}>
@@ -118,9 +118,9 @@ export const SettingListItemSelectable = ({
           <Text style={styles.selectableButtonSubtitle}>{subTitle}</Text>
         )}
       </View>
-      {/* {isSelected ? (
+      {isSelected ? (
         <CheckIcon height={24} width={24} fill={colors['color-success-600']} />
-      ) : null} */}
+      ) : null}
     </TouchableOpacity>
   );
 };
