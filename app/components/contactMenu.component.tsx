@@ -4,7 +4,7 @@ import {Button, MenuGroup, MenuItem, OverflowMenu} from '@ui-kitten/components';
 import React from 'react';
 import {Linking, StyleSheet} from 'react-native';
 import {fullName} from '../utils/peopleHelpers';
-// import {translate} from '../utils/translation';
+import {translate} from '../utils/translation';
 import {
   CallIcon,
   EmailIcon,
@@ -19,7 +19,7 @@ interface ContactMenuProps {
   setSelected: (value?: number | null) => void;
 }
 
-const translate = (key: string) => key;
+// const translate = (key: string) => key;
 
 export const ContactMenu = ({
   contact,
@@ -44,11 +44,10 @@ export const ContactMenu = ({
         // },
       )}
       onPress={() => {
-        console.log('clicked');
         setVisible(true);
       }}
       appearance="ghost"
-      // accessoryLeft={MoreIcon}
+      accessoryLeft={MoreIcon}
     />
   );
 

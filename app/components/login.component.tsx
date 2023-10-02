@@ -94,10 +94,17 @@ export const Login = () => {
 
   useEffect(() => {
     const loginHandler = async () => {
-      console.debug('Runnning loginHandler');
-      const user = await api.getUser();
-      await AppStorage.clearPersonalData(user);
-      showModal(false);
+      console.debug('Running loginHandler');
+      console.log('before user');
+      try {
+        const user = await api.getUser();
+        console.log('after user');
+        console.debug(user);
+        await AppStorage.clearPersonalData(user);
+        showModal(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     api.on('login', loginHandler);

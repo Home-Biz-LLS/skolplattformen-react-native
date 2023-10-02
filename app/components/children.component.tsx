@@ -35,7 +35,7 @@ export const childenRouteOptions =
     return {
       ...defaultStackStyling(darkMode),
       title: translate('children.title'),
-      headerLargeTitle: true,
+      headerLargeTitle: false,
       headerLargeTitleShadowVisible: false,
     };
   };

@@ -60,7 +60,6 @@ export const SetLanguage = () => {
   };
 
   const activeLanguages = languages.filter(language => language.active);
-  console.log(languages);
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>

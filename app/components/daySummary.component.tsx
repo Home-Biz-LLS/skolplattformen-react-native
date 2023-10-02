@@ -2,11 +2,10 @@ import {Child} from '../libs/api/lib';
 import {useTimetable} from '../libs/hooks/src';
 import {StyleService, Text, useStyleSheet} from '@ui-kitten/components';
 import moment, {Moment} from 'moment';
-import React from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View} from 'react-native';
-// import { LanguageService } from '../services/languageService'
-// import { translate } from '../utils/translation'
-const translate = (key: string) => key; // TODO: Remove this when translation is implemented
+import {LanguageService} from '../services/languageService';
+import {translate} from '../utils/translation';
 
 interface DaySummaryProps {
   child: Child;
@@ -18,28 +17,28 @@ const capitalizeFirstLetter = (string: string) => {
 };
 
 export const DaySummary = ({
-  // child,
+  child,
   date: currentDate = moment(),
 }: DaySummaryProps) => {
   const styles = useStyleSheet(themedStyles);
-  // const [week, year] = [currentDate.isoWeek(), currentDate.isoWeekYear()];
+  const [week, year] = [currentDate.isoWeek(), currentDate.isoWeekYear()];
 
-  // const {data: weekLessons} = useTimetable(
-  //   child,
-  //   week,
-  //   year,
-  //   LanguageService.getLanguageCode(),
-  // );
+  const {data: weekLessons} = useTimetable(
+    child,
+    week,
+    year,
+    LanguageService.getLanguageCode(),
+  );
 
-  // const lessons = weekLessons
-  //   .filter((lesson: any) => lesson.dayOfWeek === currentDate.isoWeekday())
-  //   .sort((a: any, b: any) => a.timeStart.localeCompare(b.timeStart));
+  const lessons = weekLessons
+    .filter(lesson => lesson.dayOfWeek === currentDate.isoWeekday())
+    .sort((a, b) => a.timeStart.localeCompare(b.timeStart));
 
-  // if (lessons.length <= 0) {
-  //   return null;
-  // }
+  if (lessons.length <= 0) {
+    return null;
+  }
 
-  // const gymBag = lessons.some((lesson: any) => lesson.code === 'IDH');
+  const gymBag = lessons.some(lesson => lesson.code === 'IDH');
 
   return (
     <View>
@@ -54,7 +53,7 @@ export const DaySummary = ({
             <Text category="c2" style={styles.label}>
               {translate('schedule.start')}
             </Text>
-            {/* <Text category="h5">{lessons[0].timeStart.slice(0, 5)} - </Text> */}
+            <Text category="h5">{lessons[0].timeStart.slice(0, 5)} - </Text>
           </View>
         </View>
         <View style={styles.part}>
@@ -63,9 +62,9 @@ export const DaySummary = ({
               {translate('schedule.end')}
             </Text>
             <Text category="h5">
-              {/* {lessons
-                .sort((a: any, b: any) => a.timeEnd.localeCompare(b.timeEnd))
-                [lessons.length - 1].timeEnd.slice(0, 5)} */}
+              {lessons
+                .sort((a, b) => a.timeEnd.localeCompare(b.timeEnd))
+                [lessons.length - 1].timeEnd.slice(0, 5)}
             </Text>
           </View>
         </View>
@@ -74,16 +73,13 @@ export const DaySummary = ({
             <Text category="c2" style={styles.label}>
               &nbsp;
             </Text>
-            {/* <Text category="s2">
+            <Text category="s2">
               {gymBag
-                ? ` 🤼‍♀️ ${translate(
-                    'schedule.gymBag',
-                    // {
-                    //     defaultValue: 'Gympapåse',
-                    //   }
-                  )}`
+                ? ` 🤼‍♀️ ${translate('schedule.gymBag', {
+                    defaultValue: 'Gympapåse',
+                  })}`
                 : ''}
-            </Text> */}
+            </Text>
           </View>
         </View>
       </View>

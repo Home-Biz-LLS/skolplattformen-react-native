@@ -53,7 +53,7 @@ export const Auth: React.FC<AuthProps> = ({navigation}) => {
   const colors = useTheme();
   const {t} = useTranslation();
   // const t = (key: string) => key;
-  console.log('loaded auth component');
+
   return (
     <SafeAreaView>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
