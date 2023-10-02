@@ -7,7 +7,7 @@ import {
 } from '@react-navigation/native';
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
 // import {StackNavigationProp} from '@react-navigation/stack';
-// import {Icon} from '@ui-kitten/components';
+import {Icon} from '@ui-kitten/components';
 import React, {useEffect} from 'react';
 // import {StyleProp, TextProps} from 'react-native';
 import {defaultStackStyling} from '../design/navigationThemes';
@@ -75,21 +75,21 @@ const TabNavigator = ({
             focused={focused}
           />
         ),
-        // tabBarIcon: ({focused, color}) => {
-        //   let iconName = 'news';
+        tabBarIcon: ({focused, color}) => {
+          let iconName = 'news';
 
-        //   if (route.name === 'News')
-        //     iconName = focused ? 'book-open' : 'book-open-outline';
-        //   else if (route.name === 'Notifications')
-        //     iconName = focused ? 'alert-circle' : 'alert-circle-outline';
-        //   else if (route.name === 'Calendar')
-        //     iconName = focused ? 'calendar' : 'calendar-outline';
-        //   else if (route.name === 'Menu')
-        //     iconName = focused ? 'clipboard' : 'clipboard-outline';
-        //   else if (route.name === 'Classmates')
-        //     iconName = focused ? 'people' : 'people-outline';
-        //   return <Icon name={iconName} fill={color} height={24} width={24} />;
-        // },
+          if (route.name === 'News')
+            iconName = focused ? 'book-open' : 'book-open-outline';
+          else if (route.name === 'Notifications')
+            iconName = focused ? 'alert-circle' : 'alert-circle-outline';
+          else if (route.name === 'Calendar')
+            iconName = focused ? 'calendar' : 'calendar-outline';
+          else if (route.name === 'Menu')
+            iconName = focused ? 'clipboard' : 'clipboard-outline';
+          else if (route.name === 'Classmates')
+            iconName = focused ? 'people' : 'people-outline';
+          return <Icon name={iconName} fill={color} height={24} width={24} />;
+        },
       };
     }}>
     {screenSettings.NEWS_SCREEN && (
