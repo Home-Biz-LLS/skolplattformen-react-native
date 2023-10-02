@@ -8,7 +8,7 @@ import AppStorage from '../services/appStorage';
 import {LanguageService} from '../services/languageService';
 import {Layout as LayoutStyle, Sizing} from '../styles';
 import {languages, translate} from '../utils/translation';
-// import {AwardIcon, BrushIcon, GlobeIcon} from './icon.component';
+import {AwardIcon, BrushIcon, GlobeIcon} from './icon.component';
 import {RootStackParamList} from './navigation.component';
 import {
   SettingGroup,
@@ -54,21 +54,21 @@ export const SettingsScreen = () => {
               ? translate('settings.themeAuto')
               : translate(`themes.${settingsTheme}`)
           }
-          // icon={BrushIcon}
+          icon={BrushIcon}
           onNavigate={() => navigation.navigate('SettingsAppearance')}
         />
         <SettingListSeparator />
         <SettingListItem
           label={translate('settings.language')}
           value={language?.languageLocalName}
-          // icon={GlobeIcon}
+          icon={GlobeIcon}
           onNavigate={() => navigation.navigate('SetLanguage')}
         />
       </SettingGroup>
       <SettingGroup>
         <SettingListItem
           label={translate('settings.licenses')}
-          // icon={AwardIcon}
+          icon={AwardIcon}
           onNavigate={() => navigation.navigate('SettingsLicenses')}
         />
       </SettingGroup>
