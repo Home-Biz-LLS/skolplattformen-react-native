@@ -15,7 +15,7 @@ import {ListRenderItemInfo, RefreshControl, View} from 'react-native';
 
 // import {translate} from '../utils/translation';
 import {useChild} from './childContext.component';
-// import {CalendarOutlineIcon} from './icon.component';
+import {CalendarOutlineIcon} from './icon.component';
 import {SaveToCalendar} from './saveToCalendar.component';
 import {Week} from './week.component';
 
@@ -70,7 +70,7 @@ export const Calendar = () => {
                 {formatStartDate(item.startDate)}
               </Text>
             )}
-            // accessoryLeft={CalendarOutlineIcon}
+            accessoryLeft={CalendarOutlineIcon}
             accessoryRight={() => <SaveToCalendar event={item} />}
           />
         )}
