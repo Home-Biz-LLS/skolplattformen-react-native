@@ -15,6 +15,7 @@ import {default as customMapping} from './design/mapping.json';
 import {darkTheme, lightTheme} from './design/themes';
 import useSettingsStorage from './hooks/useSettingsStorage';
 import {translations} from './utils/translation';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const reporter: Reporter | undefined = __DEV__
   ? {
@@ -96,7 +97,9 @@ export default () => {
               customMapping={customMapping}
               theme={colorScheme === 'dark' ? darkTheme : lightTheme}>
               <LanguageProvider cache={true} data={translations}>
-                <AppNavigator />
+                <GestureHandlerRootView style={{flex: 1}}>
+                  <AppNavigator />
+                </GestureHandlerRootView>
               </LanguageProvider>
             </ApplicationProvider>
           </SafeAreaProvider>
