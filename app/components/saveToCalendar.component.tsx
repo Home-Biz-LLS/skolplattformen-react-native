@@ -4,7 +4,7 @@ import React from 'react';
 import RNCalendarEvents from 'react-native-calendar-events';
 import Toast from 'react-native-simple-toast';
 // import { translate } from '../utils/translation'
-// import {CalendarOutlineIcon, MoreIcon} from './icon.component';
+import {CalendarOutlineIcon, MoreIcon} from './icon.component';
 
 interface SaveToCalendarProps {
   event: CalendarItem;
@@ -21,7 +21,7 @@ export const SaveToCalendar = ({event}: SaveToCalendarProps) => {
       accessibilityHint={translate('calender.showCalenderActions')}
       onPress={() => setVisible(true)}
       appearance="ghost"
-      // accessoryLeft={MoreIcon}
+      accessoryLeft={MoreIcon}
     />
   );
 
@@ -78,7 +78,7 @@ export const SaveToCalendar = ({event}: SaveToCalendarProps) => {
       anchor={renderToggleButton}
       onBackdropPress={closeOverflowMenu}>
       <MenuItem
-        // accessoryLeft={CalendarOutlineIcon}
+        accessoryLeft={CalendarOutlineIcon}
         title={evaProps => (
           <Text {...evaProps} maxFontSizeMultiplier={2}>
             {translate('calender.saveToCalender')}
