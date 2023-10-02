@@ -32,7 +32,7 @@ import useSettingsStorage from '../hooks/useSettingsStorage';
 import {useTranslation} from '../hooks/useTranslation';
 import {Layout} from '../styles';
 import {
-  // CheckIcon,
+  CheckIcon,
   // CloseOutlineIcon,
   PersonIcon,
   SelectIcon,
@@ -316,9 +316,9 @@ export const Login = () => {
               <ListItem
                 title={item.title}
                 accessible={true}
-                // accessoryRight={
-                //   loginMethodId === item.id ? CheckIcon : undefined
-                // }
+                accessoryRight={
+                  loginMethodId === item.id ? CheckIcon : undefined
+                }
                 onPress={() => {
                   setLoginMethodId(item.id);
                   setShowLoginMethod(false);
