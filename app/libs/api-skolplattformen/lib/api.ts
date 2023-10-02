@@ -28,7 +28,7 @@ import {
 import {Language} from '../../curriculum/src';
 import {EventEmitter} from 'events';
 import {decode} from 'he';
-// import {DateTime} from 'luxon';
+import {DateTime} from 'luxon';
 import * as html from 'node-html-parser';
 import * as fake from './fakeData';
 import {checkStatus, DummyStatusChecker} from './loginStatusChecker';
@@ -394,16 +394,16 @@ export class ApiSkolplattformen extends EventEmitter implements Api {
 
   public async getSchedule(
     child: EtjanstChild,
-    // from: DateTime,
-    // to: DateTime,
+    from: DateTime,
+    to: DateTime,
   ): Promise<ScheduleItem[]> {
-    return fakeResponse(fake.schedule(child));
+    if (this.isFake) return fakeResponse(fake.schedule(child));
 
-    // const url = routes.schedule(child.id, from.toISODate(), to.toISODate());
-    // const session = this.getRequestInit();
-    // const response = await this.fetch('schedule', url, session);
-    // const data = await response.json();
-    // return parse.schedule(data);
+    const url = routes.schedule(child.id, from.toISODate(), to.toISODate());
+    const session = this.getRequestInit();
+    const response = await this.fetch('schedule', url, session);
+    const data = await response.json();
+    return parse.schedule(data);
   }
 
   public async getNews(child: EtjanstChild): Promise<NewsItem[]> {

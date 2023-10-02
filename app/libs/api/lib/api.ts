@@ -1,4 +1,4 @@
-// import {Language} from '@skolplattformen/curriculum';
+import {Language} from '../../curriculum/src';
 import {EventEmitter} from 'events';
 import {DateTime} from 'luxon';
 import {LoginStatusChecker, FrejaLoginStatusChecker} from './loginStatus';
@@ -45,13 +45,7 @@ export interface Api extends EventEmitter {
     child: Skola24Child,
     week: number,
     year: number,
-    lang: '',
+    lang: Language,
   ): Promise<TimetableEntry[]>;
-  getTimetable(
-    child: Skola24Child,
-    week: number,
-    year: number,
-    lang: '',
-  ): Promise<any[]>;
   logout(): Promise<void>;
 }
