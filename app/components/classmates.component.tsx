@@ -2,8 +2,8 @@ import {Classmate} from '../libs/api/lib';
 import {useClassmates} from '../libs/hooks/src';
 import {
   Divider,
-  // Icon,
-  // IconProps,
+  Icon,
+  IconProps,
   List,
   ListItem,
   Text,
@@ -25,9 +25,9 @@ export const Classmates = () => {
   const child = useChild();
 
   const {data, status, reload} = useClassmates(child);
-  // const renderItemIcon = (props: IconProps) => (
-  //   <Icon {...props} name="people-outline" />
-  // );
+  const renderItemIcon = (props: IconProps) => (
+    <Icon {...props} name="people-outline" />
+  );
   const [selected, setSelected] = React.useState<Classmate>();
   const renderItem = ({item, index}: ListRenderItemInfo<Classmate>) => (
     <ListItem
@@ -38,7 +38,7 @@ export const Classmates = () => {
       title={fullName(item)}
       onPress={() => setSelected(item)}
       description={guardians(item.guardians)}
-      // accessoryLeft={renderItemIcon}
+      accessoryLeft={renderItemIcon}
       accessoryRight={() => (
         <ContactMenu
           contact={item}
