@@ -11,11 +11,11 @@ import {
 import React from 'react';
 import {ListRenderItemInfo, RefreshControl, StyleSheet} from 'react-native';
 import {fullName, guardians, sortByFirstName} from '../utils/peopleHelpers';
-// import {translate} from '../utils/translation';
+import {translate} from '../utils/translation';
 import {useChild} from './childContext.component';
 import {ContactMenu} from './contactMenu.component';
 
-const translate = (key: string) => key;
+// const translate = (key: string) => key;
 
 // interface ClassmatesProps {
 //   setSelected: (value?: number | null) => void;

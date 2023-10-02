@@ -14,7 +14,7 @@ import {Button, StyleService, Text, useStyleSheet} from '@ui-kitten/components';
 import moment, {Moment} from 'moment';
 import React, {useEffect} from 'react';
 import {TouchableOpacity, useColorScheme, View} from 'react-native';
-// import {useTranslation} from '../hooks/useTranslation';
+import {useTranslation} from '../hooks/useTranslation';
 import {Colors, Layout, Sizing} from '../styles';
 import {getMeaningfulStartingDate} from '../utils/calendarHelpers';
 import {studentName} from '../utils/peopleHelpers';
@@ -46,8 +46,8 @@ export const ChildListItem = ({
   }, [child.id]);
 
   const navigation = useNavigation<ChildListItemNavigationProp>();
-  // const {t} = useTranslation();
-  const t = (key: string) => key;
+  const {t} = useTranslation();
+  // const t = (key: string) => key;
   const {data: notifications, reload: notificationsReload} =
     useNotifications(child);
   const {data: news, status: newsStatus, reload: newsReload} = useNews(child);

@@ -8,7 +8,7 @@ import {
 } from '@ui-kitten/components';
 import React, {useState} from 'react';
 import {View} from 'react-native';
-// import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import RNRestart from 'react-native-restart';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useLanguage} from '../hooks/useLanguage';
@@ -64,21 +64,21 @@ export const SetLanguage = () => {
 
   return (
     <SafeAreaView style={styles.container} edges={['bottom']}>
-      {/* <ScrollView contentContainerStyle={styles.scrollView}> */}
-      <SettingGroup>
-        <View style={styles.languageList}>
-          {activeLanguages.map(language => (
-            <SettingListItemSelectable
-              key={language.langCode}
-              onPress={() => setSelectedLanguage(language.langCode)}
-              title={language.languageLocalName}
-              subTitle={language.languageName}
-              isSelected={isSelected(language.langCode)}
-            />
-          ))}
-        </View>
-      </SettingGroup>
-      {/* </ScrollView> */}
+      <ScrollView contentContainerStyle={styles.scrollView}>
+        <SettingGroup>
+          <View style={styles.languageList}>
+            {activeLanguages.map(language => (
+              <SettingListItemSelectable
+                key={language.langCode}
+                onPress={() => setSelectedLanguage(language.langCode)}
+                title={language.languageLocalName}
+                subTitle={language.languageName}
+                isSelected={isSelected(language.langCode)}
+              />
+            ))}
+          </View>
+        </SettingGroup>
+      </ScrollView>
       <ButtonGroup style={styles.buttonGroup}>
         <Button
           onPress={() => saveLanguage()}

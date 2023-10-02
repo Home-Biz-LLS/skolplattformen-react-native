@@ -108,7 +108,7 @@ export const Day = ({weekDay, lunch, lessons}: DayProps) => {
 };
 
 export const Week = ({child}: WeekProps) => {
-  const translate = (key: string) => key;
+  // const translate = (key: string) => key;
 
   moment.locale(LanguageService.getLocale());
   const days = moment.weekdaysShort().slice(1, 6);

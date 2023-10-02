@@ -1,5 +1,5 @@
 import merge from 'deepmerge';
-import {I18n} from 'i18n-js';
+import i18n from 'i18n-js';
 import moment from 'moment';
 import 'moment/locale/ar';
 import 'moment/locale/de';
@@ -20,7 +20,7 @@ import 'moment/locale/zh-cn';
 import {I18nManager} from 'react-native';
 import {languages} from '../utils/translation';
 
-const i18n = new I18n();
+// const i18n = new I18n();
 
 const changeListeners: Record<string, any> = {};
 

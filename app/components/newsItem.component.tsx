@@ -16,13 +16,13 @@ import {
 import {defaultStackStyling} from '../design/navigationThemes';
 import {Layout, Sizing, Typography} from '../styles';
 import {studentName} from '../utils/peopleHelpers';
-// import {translate} from '../utils/translation';
+import {translate} from '../utils/translation';
 import {Image} from './image.component';
 import {Markdown} from './markdown.component';
 import {RootStackParamList} from './navigation.component';
 import {NavigationTitle} from './navigationTitle.component';
 
-const translate = (key: string) => key;
+// const translate = (key: string) => key;
 
 interface NewsItemProps {
   navigation: StackNavigationProp<RootStackParamList, 'NewsItem'>;

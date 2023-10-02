@@ -76,8 +76,8 @@ export const Login = () => {
     SchoolPlatformContext,
   );
 
-  // const {t} = useTranslation();
-  const t = (key: string) => key;
+  const {t} = useTranslation();
+  // const t = (key: string) => key;
 
   const valid = Personnummer.valid(personalIdNumber);
 

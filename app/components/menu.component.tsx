@@ -17,11 +17,11 @@ import {
   View,
 } from 'react-native';
 import {Layout as LayoutStyle, Sizing, Typography} from '../styles';
-// import {translate} from '../utils/translation';
+import {translate} from '../utils/translation';
 import {useChild} from './childContext.component';
 import {MenuListItem} from './menuListItem.component';
 
-const translate = (key: string) => key;
+// const translate = (key: string) => key;
 
 export const Menu = () => {
   const styles = useStyleSheet(themedStyles);

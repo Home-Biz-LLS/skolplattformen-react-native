@@ -83,8 +83,6 @@ export const Children = () => {
 
   // We need to skip safe area view here, due to the reason that it's adding a white border
   // when this view is actually lightgrey. Taking the padding top value from the use inset hook.
-  const translate = (key: string) => key; //! remove this after we fix translations
-
   return status === 'loaded' ? (
     <List
       contentContainerStyle={styles.childListContainer}

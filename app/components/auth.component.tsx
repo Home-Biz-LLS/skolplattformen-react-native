@@ -51,8 +51,8 @@ export const authRouteOptions = (): NativeStackNavigationOptions => {
 export const Auth: React.FC<AuthProps> = ({navigation}) => {
   const styles = useStyleSheet(themeStyles);
   const colors = useTheme();
-  // const {t} = useTranslation();
-  const t = (key: string) => key;
+  const {t} = useTranslation();
+  // const t = (key: string) => key;
   console.log('loaded auth component');
   return (
     <SafeAreaView>
@@ -77,10 +77,7 @@ export const Auth: React.FC<AuthProps> = ({navigation}) => {
                 width={28}
                 fill={colors['color-primary-500']}
               />
-              <Text style={styles.languageText}>
-                {/* {t('general.settings')} */}
-                general.settings
-              </Text>
+              <Text style={styles.languageText}>{t('general.settings')}</Text>
             </View>
           </TouchableOpacity>
           <KeyboardAvoidingView>
@@ -109,12 +106,9 @@ export const Auth: React.FC<AuthProps> = ({navigation}) => {
                 </Text>
                 <Login />
                 <Text category="c2" style={styles.subtitle}>
-                  {t(
-                    'auth.subtitle',
-                    // {
-                    //   word: randomWord(t),
-                    // }
-                  )}
+                  {t('auth.subtitle', {
+                    word: randomWord(t),
+                  })}
                 </Text>
               </View>
             </View>

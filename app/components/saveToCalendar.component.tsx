@@ -3,14 +3,14 @@ import {Button, MenuItem, OverflowMenu, Text} from '@ui-kitten/components';
 import React from 'react';
 import RNCalendarEvents from 'react-native-calendar-events';
 import Toast from 'react-native-simple-toast';
-// import { translate } from '../utils/translation'
+import {translate} from '../utils/translation';
 import {CalendarOutlineIcon, MoreIcon} from './icon.component';
 
 interface SaveToCalendarProps {
   event: CalendarItem;
 }
 
-const translate = (key: string) => key;
+// const translate = (key: string) => key;
 
 export const SaveToCalendar = ({event}: SaveToCalendarProps) => {
   const [visible, setVisible] = React.useState(false);

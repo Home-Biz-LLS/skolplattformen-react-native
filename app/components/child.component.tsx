@@ -13,7 +13,7 @@ import React, {useEffect} from 'react';
 import {defaultStackStyling} from '../design/navigationThemes';
 import {useFeature} from '../hooks/useFeature';
 import {studentName} from '../utils/peopleHelpers';
-// import {translate} from '../utils/translation';
+import {translate} from '../utils/translation';
 import {Calendar} from './calendar.component';
 import {ChildProvider} from './childContext.component';
 import {Classmates} from './classmates.component';
@@ -24,7 +24,7 @@ import {NewsList} from './newsList.component';
 import {NotificationsList} from './notificationsList.component';
 import {TabBarLabel} from './tabBarLabel.component';
 
-const translate = (key: string) => key;
+// const translate = (key: string) => key;
 
 // type ChildNavigationProp = StackNavigationProp<RootStackParamList, 'Child'>;
 type ChildRouteProps = RouteProp<RootStackParamList, 'Child'>;

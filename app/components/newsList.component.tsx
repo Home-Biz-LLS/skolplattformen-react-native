@@ -7,12 +7,12 @@ import {
   renderSearchResultPreview,
   useNewsListSearchResults,
 } from '../utils/search';
-// import {translate} from '../utils/translation';
+import {translate} from '../utils/translation';
 import {useChild} from './childContext.component';
 import {CloseOutlineIcon, SearchIcon} from './icon.component';
 import {NewsListItem} from './newsListItem.component';
 
-const translate = (key: string) => key;
+// const translate = (key: string) => key;
 
 export const NewsList = () => {
   const styles = useStyleSheet(themedStyles);
