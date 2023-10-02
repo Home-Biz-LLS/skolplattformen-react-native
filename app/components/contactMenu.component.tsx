@@ -5,13 +5,13 @@ import React from 'react';
 import {Linking, StyleSheet} from 'react-native';
 import {fullName} from '../utils/peopleHelpers';
 // import {translate} from '../utils/translation';
-// import {
-//   CallIcon,
-//   EmailIcon,
-//   MapIcon,
-//   MoreIcon,
-//   SMSIcon,
-// } from './icon.component';
+import {
+  CallIcon,
+  EmailIcon,
+  MapIcon,
+  MoreIcon,
+  SMSIcon,
+} from './icon.component';
 
 interface ContactMenuProps {
   contact: Classmate;
@@ -76,7 +76,7 @@ export const ContactMenu = ({
             <MenuItem
               testID="CallMenuItem"
               accessibilityLabel={translate('contact.call')}
-              // accessoryLeft={CallIcon}
+              accessoryLeft={CallIcon}
               style={{display: shouldDisplay(mobile)}}
               title={translate('contact.call')}
               onPress={() => Linking.openURL(`tel:${mobile}`)}
@@ -84,7 +84,7 @@ export const ContactMenu = ({
             <MenuItem
               testID="SMSMenuItem"
               accessibilityLabel={translate('contact.sms')}
-              // accessoryLeft={SMSIcon}
+              accessoryLeft={SMSIcon}
               style={{display: shouldDisplay(mobile)}}
               title={translate('contact.sms')}
               onPress={() => Linking.openURL(`sms:${mobile}`)}
@@ -92,7 +92,7 @@ export const ContactMenu = ({
             <MenuItem
               testID="SendEmailMenuItem"
               accessibilityLabel={translate('contact.email')}
-              // accessoryLeft={EmailIcon}
+              accessoryLeft={EmailIcon}
               style={{display: shouldDisplay(email)}}
               title={translate('contact.email')}
               onPress={() => Linking.openURL(`mailto:${email}`)}
@@ -100,7 +100,7 @@ export const ContactMenu = ({
             <MenuItem
               testID="ShowHomeMenuItem"
               accessibilityLabel={translate('contact.home')}
-              // accessoryLeft={MapIcon}
+              accessoryLeft={MapIcon}
               style={{display: shouldDisplay(address)}}
               title={translate('contact.home')}
               onPress={() =>
