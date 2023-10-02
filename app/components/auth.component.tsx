@@ -4,7 +4,7 @@ import {
   StyleService,
   Text,
   useStyleSheet,
-  // useTheme,
+  useTheme,
 } from '@ui-kitten/components';
 import React from 'react';
 import {
@@ -20,7 +20,7 @@ import {Layout as LayoutStyle, Sizing, Typography} from '../styles';
 import {fontSize} from '../styles/typography';
 import {KeyboardAvoidingView} from '../ui/keyboardAvoidingView.component';
 import {SafeAreaView} from '../ui/safeAreaView.component';
-// import {SettingsIcon} from './icon.component';
+import {SettingsIcon} from './icon.component';
 import {Login} from './login.component';
 import {RootStackParamList} from './navigation.component';
 
@@ -50,7 +50,7 @@ export const authRouteOptions = (): NativeStackNavigationOptions => {
 
 export const Auth: React.FC<AuthProps> = ({navigation}) => {
   const styles = useStyleSheet(themeStyles);
-  // const colors = useTheme();
+  const colors = useTheme();
   // const {t} = useTranslation();
   const t = (key: string) => key;
   console.log('loaded auth component');
@@ -72,11 +72,11 @@ export const Auth: React.FC<AuthProps> = ({navigation}) => {
               // }
             )}>
             <View style={styles.language}>
-              {/* <SettingsIcon
+              <SettingsIcon
                 height={28}
                 width={28}
                 fill={colors['color-primary-500']}
-              /> */}
+              />
               <Text style={styles.languageText}>
                 {/* {t('general.settings')} */}
                 general.settings

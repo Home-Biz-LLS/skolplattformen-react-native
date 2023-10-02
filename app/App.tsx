@@ -28,7 +28,8 @@ import {AppNavigator} from './components/navigation.component';
 import {ApiProvider} from './libs/hooks/src';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {FeatureProvider} from './context/feature/featureContext';
-import {ApplicationProvider} from '@ui-kitten/components';
+import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
+import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import initSkolplattformen, {
   features as featuresSkolPlattformen,
 } from './libs/api-skolplattformen/lib';
@@ -52,6 +53,7 @@ function App(): JSX.Element {
   return (
     <FeatureProvider features={platform.features}>
       <ApiProvider api={platform.api} storage={AsyncStorage}>
+        <IconRegistry icons={EvaIconsPack} />
         <ApplicationProvider
           {...eva}
           // @ts-expect-error Unknown error
