@@ -25,7 +25,7 @@ import AppStorage from '../services/appStorage';
 import {Layout as LayoutStyle, Sizing, Typography} from '../styles';
 import {translate} from '../utils/translation';
 import {ChildListItem} from './childListItem.component';
-// import {RefreshIcon, SettingsIcon} from './icon.component';
+import {RefreshIcon, SettingsIcon} from './icon.component';
 import {RootStackParamList} from './navigation.component';
 
 const colors = ['primary', 'success', 'info', 'warning', 'danger'];
@@ -35,7 +35,6 @@ export const childenRouteOptions =
     return {
       ...defaultStackStyling(darkMode),
       title: translate('children.title'),
-      title: 'children.title',
       headerLargeTitle: true,
       headerLargeTitleShadowVisible: false,
     };
@@ -63,23 +62,16 @@ export const Children = () => {
     navigation.setOptions({
       headerLeft: () => {
         return (
-          // <TopNavigationAction
-          //   title="Settings"
-          //   // icon={SettingsIcon}
-          //   onPress={() => navigation.navigate('Settings')}
-          // />
-          <Text
-            // title="settings"
-            onPress={() => navigation.navigate('Settings')}>
-            Settings
-          </Text>
+          <TopNavigationAction
+            icon={SettingsIcon}
+            onPress={() => navigation.navigate('Settings')}
+          />
         );
       },
       headerRight: () => {
         return (
           <TopNavigationAction
-            title="Settings"
-            // icon={RefreshIcon}
+            icon={RefreshIcon}
             onPress={() => reloadChildren()}
             accessibilityHint="Reload"
             accessibilityLabel="Reload"
