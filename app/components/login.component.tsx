@@ -31,12 +31,12 @@ import {useFeature} from '../hooks/useFeature';
 import useSettingsStorage from '../hooks/useSettingsStorage';
 import {useTranslation} from '../hooks/useTranslation';
 import {Layout} from '../styles';
-// import {
-//   CheckIcon,
-//   CloseOutlineIcon,
-//   PersonIcon,
-//   SelectIcon,
-// } from './icon.component';
+import {
+  // CheckIcon,
+  // CloseOutlineIcon,
+  PersonIcon,
+  // SelectIcon,
+} from './icon.component';
 // import AppStorage from '../services/appStorage';
 
 // const BankId = () => (
@@ -223,9 +223,7 @@ export const Login = () => {
 
   // const currentLoginMethod =
   //   loginMethods.find(method => method.id === loginMethodId) || loginMethods[0];
-  console.log('loaded login componenet');
   return (
-    // <Text>Hello Marcus</Text>
     <>
       <View style={styles.loginForm}>
         {isUsingPersonalIdNumber && (
@@ -236,7 +234,7 @@ export const Login = () => {
             autoFocus
             value={personalIdNumber}
             style={styles.pnrInput}
-            // accessoryLeft={PersonIcon}
+            accessoryLeft={PersonIcon}
             // accessoryRight={props => (
             //   <TouchableWithoutFeedback
             //     accessible={true}
