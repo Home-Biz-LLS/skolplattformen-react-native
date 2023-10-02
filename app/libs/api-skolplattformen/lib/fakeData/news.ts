@@ -44,7 +44,7 @@ const newsData = new Map<string, NewsItem[]>([
         body: '## Läxor vecka 6 \n\nFöljande läxor är obligatoriska:\n\n- Antikens historia\n- Svenska stormaktstiden\n- Statistik A\n- Flerdimensionell analys, del 1',
         imageUrl: '6607f9b923edb6f85aa4417bab43c0f8.jpg',
         fullImageUrl:
-          'https://www.mitti.se/_internal/cimg!0/ejf8efxee735ymm8tm40q3hhkl36sdt.jpeg',
+          'https://images.unsplash.com/photo-1629652487043-fb2825838f8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2671&q=80',
         imageAltText: 'Nyhetsbild. Bildtext ej tillgänglig.',
         published: dates.oneWeekAgo.toISO(),
         modified: dates.oneWeekAgo.minus({hours: 3}).toISO(),
@@ -90,7 +90,7 @@ const newsData = new Map<string, NewsItem[]>([
         body: '## Läxor vecka 6 \n\nFöljande läxor är obligatoriska:\n\n- Antikens historia\n- Svenska stormaktstiden\n- Statistik A\n- Flerdimensionell analys, del 1',
         imageUrl: '6607f9b923edb6f85aa4417bab43c0f8.jpg',
         fullImageUrl:
-          'https://www.mitti.se/_internal/cimg!0/ejf8efxee735ymm8tm40q3hhkl36sdt.jpeg',
+          'https://images.unsplash.com/photo-1629652487043-fb2825838f8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2671&q=80',
         imageAltText: 'Nyhetsbild. Bildtext ej tillgänglig.',
         published: dates.oneWeekAgo.toISO(),
         modified: dates.oneWeekAgo.toISO(),
