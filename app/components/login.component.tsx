@@ -14,45 +14,43 @@ import {
   useStyleSheet,
 } from '@ui-kitten/components';
 import Personnummer from 'personnummer';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, {useContext, useEffect, useState} from 'react';
 import {
-  // Image,
-  // ImageProps,
-  // Linking,
-  // Platform,
-  // TouchableWithoutFeedback,
+  Image,
+  Linking,
+  Platform,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
-// import {schema} from '../app.json';
-// import {SchoolPlatformContext} from '../context/schoolPlatform/schoolPlatformContext';
-// import {schoolPlatforms} from '../data/schoolPlatforms';
+import {schema} from '../app.json';
+import {SchoolPlatformContext} from '../context/schoolPlatform/schoolPlatformContext';
+import {schoolPlatforms} from '../data/schoolPlatforms';
 import {useFeature} from '../hooks/useFeature';
 import useSettingsStorage from '../hooks/useSettingsStorage';
 import {useTranslation} from '../hooks/useTranslation';
 import {Layout} from '../styles';
 import {
   CheckIcon,
-  // CloseOutlineIcon,
+  CloseOutlineIcon,
   PersonIcon,
   SelectIcon,
 } from './icon.component';
-// import AppStorage from '../services/appStorage';
+import AppStorage from '../services/appStorage';
 
-// const BankId = () => (
-//   <Image
-//     style={themedStyles.icon}
-//     source={require('../assets/bankid_low_rgb.png')}
-//     accessibilityIgnoresInvertColors
-//   />
-// );
-// const FrejaEid = () => (
-//   <Image
-//     style={themedStyles.icon}
-//     source={require('../assets/freja_eid_logo.png')}
-//     accessibilityIgnoresInvertColors
-//   />
-// );
+const BankId = () => (
+  <Image
+    style={themedStyles.icon}
+    source={require('../assets/bankid_low_rgb.png')}
+    accessibilityIgnoresInvertColors
+  />
+);
+const FrejaEid = () => (
+  <Image
+    style={themedStyles.icon}
+    source={require('../assets/freja_eid_logo.png')}
+    accessibilityIgnoresInvertColors
+  />
+);
 
 export const Login = () => {
   const {api} = useApi();
@@ -74,12 +72,13 @@ export const Login = () => {
     'LOGIN_BANK_ID_SAME_DEVICE_WITHOUT_ID',
   );
   const loginWithFrejaEnabled = useFeature('LOGIN_FREJA_EID');
-  // const {currentSchoolPlatform, changeSchoolPlatform} = useContext(
-  //   SchoolPlatformContext,
-  // );
+  const {currentSchoolPlatform, changeSchoolPlatform} = useContext(
+    SchoolPlatformContext,
+  );
 
   // const {t} = useTranslation();
   const t = (key: string) => key;
+
   const valid = Personnummer.valid(personalIdNumber);
 
   const loginMethods = [
@@ -88,72 +87,62 @@ export const Login = () => {
     {id: 'freja', title: t('auth.freja.OpenOnThisDevice')},
     {id: 'testuser', title: t('auth.loginAsTestUser')},
   ] as const;
-  // const loginMethods = [
-  //   {id: 'thisdevice', title: 'auth.bankid.OpenOnThisDevice'},
-  //   {id: 'otherdevice', title: 'auth.bankid.OpenOnAnotherDevice'},
-  //   {id: 'freja', title: 'auth.freja.OpenOnThisDevice'},
-  //   {id: 'testuser', title: 'auth.loginAsTestUser'},
-  // ] as const;
 
   if (loginMethodId === 'freja' && !loginWithFrejaEnabled) {
     setLoginMethodId('thisdevice');
   }
 
-  // useEffect(() => {
-  //   const loginHandler = async () => {
-  //     console.debug('Runnning loginHandler');
-  //     const user = await api.getUser();
-  //     await AppStorage.clearPersonalData(user);
-  //     showModal(false);
-  //   };
+  useEffect(() => {
+    const loginHandler = async () => {
+      console.debug('Runnning loginHandler');
+      const user = await api.getUser();
+      await AppStorage.clearPersonalData(user);
+      showModal(false);
+    };
 
-  //   api.on('login', loginHandler);
-  //   return () => {
-  //     api.off('login', loginHandler);
-  //   };
-  // }, [api]);
+    api.on('login', loginHandler);
+    return () => {
+      api.off('login', loginHandler);
+    };
+  }, [api]);
 
-  // const LoginProviderImage = () => {
-  //   if (loginMethodId === 'testuser') {
-  //     return null;
-  //   };
-  //! check here for errors
-  // if (loginMethodId === 'freja') return FrejaEid();
-  // return BankId();
-  // };
-
-  const getSchoolPlatformName = () => {
-    // return schoolPlatforms.find(item => item.id === currentSchoolPlatform)
-    //   ?.displayName;
-    return 'Stockholms stad (Skolplattformen)';
+  const LoginProviderImage = () => {
+    //if(loginMethodId == 'testuser') return undefined
+    if (loginMethodId === 'freja') return FrejaEid();
+    return BankId();
   };
 
-  // const openBankId = (token: string) => {
-  //   try {
-  //     const redirect =
-  //       loginMethodId === 'thisdevice' ? encodeURIComponent(schema) : '';
-  //     const bankIdUrl =
-  //       Platform.OS === 'ios'
-  //         ? `https://app.bankid.com/?autostarttoken=${token}&redirect=${redirect}`
-  //         : `bankid:///?autostarttoken=${token}&redirect=null`;
-  //     Linking.openURL(bankIdUrl);
-  //   } catch (err) {
-  //     setError(t('auth.bankid.OpenManually'));
-  //   }
-  // };
+  const getSchoolPlatformName = () => {
+    return schoolPlatforms.find(item => item.id === currentSchoolPlatform)
+      ?.displayName;
+  };
 
-  // const openFreja = (token: string) => {
-  //   try {
-  //     const originAppScheme = encodeURIComponent(schema);
-  //     const frejaUrl =
-  //       Platform.OS === 'ios'
-  //         ? `${token}&originAppScheme=${originAppScheme}`
-  //         : `${token}`;
-  //     Linking.openURL(frejaUrl);
-  //   } catch (err) {
-  //     setError(t('auth.freja.OpenManually'));
-  //   }
-  // };
+  const openBankId = (token: string) => {
+    try {
+      const redirect =
+        loginMethodId === 'thisdevice' ? encodeURIComponent(schema) : '';
+      const bankIdUrl =
+        Platform.OS === 'ios'
+          ? `https://app.bankid.com/?autostarttoken=${token}&redirect=${redirect}`
+          : `bankid:///?autostarttoken=${token}&redirect=null`;
+      Linking.openURL(bankIdUrl);
+    } catch (err) {
+      setError(t('auth.bankid.OpenManually'));
+    }
+  };
+
+  const openFreja = (token: string) => {
+    try {
+      const originAppScheme = encodeURIComponent(schema);
+      const frejaUrl =
+        Platform.OS === 'ios'
+          ? `${token}&originAppScheme=${originAppScheme}`
+          : `${token}`;
+      Linking.openURL(frejaUrl);
+    } catch (err) {
+      setError(t('auth.freja.OpenManually'));
+    }
+  };
 
   const isUsingPersonalIdNumber =
     loginMethodId === 'otherdevice' ||
@@ -161,29 +150,28 @@ export const Login = () => {
 
   const startLogin = async (text: string) => {
     if (loginMethodId === 'freja') {
-      // setLoginStatusText(t('auth.freja.Waiting'));
-      // showModal(true);
-      // const status = await api.loginFreja();
-      // setCancelLoginRequest(() => () => status.cancel());
-      // openFreja(status.token);
-      // status.on('STARTED', () => console.log('Freja eID app not yet opened'));
-      // status.on('DELIVERED_TO_MOBILE', () =>
-      //   console.log('Freja eID app is open'),
-      // );
-      // status.on('CANCELLED', () => {
-      //   console.log('User pressed cancel in Freja eID');
-      //   showModal(false);
-      // });
-      // status.on('APPROVED', () => {
-      //   console.log('Freja eID ok');
-      //   setLoginStatusText(t('auth.loginSuccessful'));
-      // });
+      setLoginStatusText(t('auth.freja.Waiting'));
+      showModal(true);
+      const status = await api.loginFreja();
+      setCancelLoginRequest(() => () => status.cancel());
+      openFreja(status.token);
+      status.on('STARTED', () => console.log('Freja eID app not yet opened'));
+      status.on('DELIVERED_TO_MOBILE', () =>
+        console.log('Freja eID app is open'),
+      );
+      status.on('CANCELLED', () => {
+        console.log('User pressed cancel in Freja eID');
+        showModal(false);
+      });
+      status.on('APPROVED', () => {
+        console.log('Freja eID ok');
+        setLoginStatusText(t('auth.loginSuccessful'));
+      });
     } else if (
       loginMethodId === 'thisdevice' ||
       loginMethodId === 'otherdevice'
     ) {
-      // setLoginStatusText(t('auth.bankid.Waiting'));
-      setLoginStatusText('auth.bankid.Waiting');
+      setLoginStatusText(t('auth.bankid.Waiting'));
       showModal(true);
 
       let ssn;
@@ -196,7 +184,7 @@ export const Login = () => {
       const status = await api.login(ssn);
       setCancelLoginRequest(() => () => status.cancel());
       if (status.token !== 'fake' && loginMethodId === 'thisdevice') {
-        // openBankId(status.token);
+        openBankId(status.token);
       }
       status.on('PENDING', () => console.log('BankID app not yet opened'));
       status.on('USER_SIGN', () => console.log('BankID app is open'));
@@ -205,14 +193,12 @@ export const Login = () => {
         showModal(false);
       });
       status.on('ERROR', () => {
-        // setError(t('auth.loginFailed'));
-        setError('auth.loginFailed');
+        setError(t('auth.loginFailed'));
         showModal(false);
       });
       status.on('OK', () => {
         console.log('BankID ok');
-        // setLoginStatusText(t('auth.loginSuccessful'));
-        setLoginStatusText('auth.loginSuccessful');
+        setLoginStatusText(t('auth.loginSuccessful'));
       });
     } else {
       await api.login('201212121212');
@@ -221,37 +207,36 @@ export const Login = () => {
 
   const styles = useStyleSheet(themedStyles);
 
-  // const currentLoginMethod =
-  //   loginMethods.find(method => method.id === loginMethodId) || loginMethods[0];
+  const currentLoginMethod =
+    loginMethods.find(method => method.id === loginMethodId) || loginMethods[0];
+
   return (
     <>
       <View style={styles.loginForm}>
         {isUsingPersonalIdNumber && (
           <Input
             accessible={true}
-            // label={t('general.socialSecurityNumber')}
-            label={'general.socialSecurityNumber'}
+            label={t('general.socialSecurityNumber')}
             autoFocus
             value={personalIdNumber}
             style={styles.pnrInput}
             accessoryLeft={PersonIcon}
-            // accessoryRight={props => (
-            //   <TouchableWithoutFeedback
-            //     accessible={true}
-            //     onPress={() => setPersonalIdNumber('')}
-            //     accessibilityHint={t(
-            //       'login.a11y_clear_social_security_input_field',
-            //       {defaultValue: 'Rensa fältet för personnummer'},
-            //     )}>
-            //     <CloseOutlineIcon {...props} />
-            //   </TouchableWithoutFeedback>
-            // )}
+            accessoryRight={props => (
+              <TouchableWithoutFeedback
+                accessible={true}
+                onPress={() => setPersonalIdNumber('')}
+                accessibilityHint={t(
+                  'login.a11y_clear_social_security_input_field',
+                  // {defaultValue: 'Rensa fältet för personnummer'},
+                )}>
+                <CloseOutlineIcon {...props} />
+              </TouchableWithoutFeedback>
+            )}
             keyboardType="numeric"
             onSubmitEditing={event => startLogin(event.nativeEvent.text)}
             caption={error || ''}
             onChangeText={setPersonalIdNumber}
-            // placeholder={t('auth.placeholder_SocialSecurityNumber')}
-            placeholder={'auth.placeholder_SocialSecurityNumber'}
+            placeholder={t('auth.placeholder_SocialSecurityNumber')}
           />
         )}
         <ButtonGroup style={styles.loginButtonGroup} status="primary">
@@ -262,9 +247,9 @@ export const Login = () => {
             appearance="ghost"
             disabled={isUsingPersonalIdNumber && !valid}
             status="primary"
-            // accessoryLeft={LoginProviderImage}
+            accessoryLeft={LoginProviderImage}
             size="medium">
-            {t('currentLoginMethod.title')}
+            {currentLoginMethod.title}
           </Button>
           <Button
             accessible={true}
@@ -276,10 +261,12 @@ export const Login = () => {
             status="primary"
             accessoryLeft={SelectIcon}
             size="medium"
-            // accessibilityHint={t('login.a11y_select_login_method', {
-            //   defaultValue: 'Välj inloggningsmetod',
-            // })}
-            accessibilityHint={'login.a11y_select_login_method'}
+            accessibilityHint={t(
+              'login.a11y_select_login_method',
+              // {
+              //   defaultValue: 'Välj inloggningsmetod',
+              // }
+            )}
           />
         </ButtonGroup>
         <View style={styles.platformPicker}>
@@ -303,7 +290,6 @@ export const Login = () => {
         <Card>
           <Text category="h5" style={styles.bankIdLoading}>
             {t('auth.chooseLoginMethod')}
-            {/* {'auth.chooseLoginMethod'} */}
           </Text>
           <List
             data={
@@ -312,7 +298,7 @@ export const Login = () => {
                 : loginMethods.filter(f => f.id !== 'freja')
             }
             ItemSeparatorComponent={Divider}
-            renderItem={({item}) => (
+            renderItem={({item, index}) => (
               <ListItem
                 title={item.title}
                 accessible={true}
@@ -332,8 +318,7 @@ export const Login = () => {
             onPress={() => {
               setShowLoginMethod(false);
             }}>
-            {/* {t('general.cancel')} */}
-            {'general.cancel'}
+            {t('general.cancel')}
           </Button>
         </Card>
       </Modal>
@@ -351,8 +336,7 @@ export const Login = () => {
               cancelLoginRequest();
               showModal(false);
             }}>
-            {/* {t('general.cancel')} */}
-            {'general.cancel'}
+            {t('general.cancel')}
           </Button>
         </Card>
       </Modal>
@@ -363,32 +347,30 @@ export const Login = () => {
         backdropStyle={styles.backdrop}>
         <Card>
           <Text category="h5" style={styles.bankIdLoading}>
-            {/* {t('auth.chooseSchoolPlatform')} */}
-            {'auth.chooseSchoolPlatform'}
+            {t('auth.chooseSchoolPlatform')}
           </Text>
-          {/* <List
+          <List
             data={schoolPlatforms}
             ItemSeparatorComponent={Divider}
             renderItem={({item}) => (
               <ListItem
                 title={item.displayName}
                 accessible={true}
-                // accessoryRight={
-                //   currentSchoolPlatform === item.id ? CheckIcon : undefined
-                // }
+                accessoryRight={
+                  currentSchoolPlatform === item.id ? CheckIcon : undefined
+                }
                 onPress={() => {
                   changeSchoolPlatform(item.id);
                   setShowSchoolPlatformPicker(false);
                 }}
               />
             )}
-          /> */}
+          />
           <Button
             status="basic"
             style={styles.cancelButtonStyle}
             onPress={() => setShowSchoolPlatformPicker(false)}>
-            {/* {t('general.cancel')} */}
-            {'general.cancel'}
+            {t('general.cancel')}
           </Button>
         </Card>
       </Modal>
