@@ -9,7 +9,7 @@ import {
 } from '../utils/search';
 // import {translate} from '../utils/translation';
 import {useChild} from './childContext.component';
-// import {CloseOutlineIcon, SearchIcon} from './icon.component';
+import {CloseOutlineIcon, SearchIcon} from './icon.component';
 import {NewsListItem} from './newsListItem.component';
 
 const translate = (key: string) => key;
@@ -39,14 +39,14 @@ export const NewsList = () => {
         )}
         returnKeyType="search"
         status="basic"
-        // accessoryLeft={SearchIcon}
+        accessoryLeft={SearchIcon}
         onChangeText={setSearchQuery}
         value={searchQuery}
         style={styles.search}
         accessoryRight={props =>
           searchQuery.length > 0 ? (
             <TouchableOpacity onPress={() => setSearchQuery('')}>
-              {/* <CloseOutlineIcon {...props} /> */}
+              <CloseOutlineIcon {...props} />
             </TouchableOpacity>
           ) : (
             <View />
